@@ -1,0 +1,27 @@
+BibleMemorizer is a program to help with memorizing scripture.
+
+See http://biblememorizer.sourceforge.net
+
+Please see INSTALL for installation instructions, they are slightly
+different from the standard autoconf/automake instructions used for most
+other open-source software.
+
+BibleMemorizer is capable of creating verse files, as well as giving
+multi-verse quizzes.  Thus, as of this release, it is functionally ready for
+everyday use.
+
+A simple test file "test-0.6.bvc" is provided.  The verses quoted are from the
+KJV and thus are in the public domain.  The intent is for you to create your
+own verse file with the verses you intend to memorize, from whatever
+translation you desire.  At the moment, a full collection is not provided due
+to potential copyright issues.
+
+0.6 slightly changes the format compared to 0.5, in that it stores categories
+in a more sensible way (and thus now allows ";" in category names.)  However,
+BibleMemorizer 0.6 can successfully read any file created by any previous
+release of BibleMemorizer.  Categories in particular written by 0.6, however,
+will not work properly in 0.5 or earlier.
+
+See the TODO file for some implementation ideas that may come in the future.
+If you would like to help with development and implement any of these features
+please e-mail Jeremy Erickson (jerickson314@users.sourceforge.net.)

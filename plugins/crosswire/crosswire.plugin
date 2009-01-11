@@ -1,0 +1,11 @@
+FileName=libcrosswire
+Name=Sword API from CrossWire
+ShortName=Sword
+Version=0.4
+Description=Loads book lists, verses, etc. from CrossWire's Sword project.
+InterfaceVersion=0.3
+AuthorFile=authors.crosswire
+WebSite=http://biblememorizer.sf.net
+Copyright=Copyright © 2005-2009 Jeremy Erickson and the BibleTime Developers
+License=GPL
+LicenseFile=license.crosswire.html

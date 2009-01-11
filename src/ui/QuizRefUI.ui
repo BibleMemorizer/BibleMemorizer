@@ -1,0 +1,129 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>QuizRefUI</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>QuizRefUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>603</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel" row="3" column="2">
+            <property name="name">
+                <cstring>mResultLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="3" column="3">
+            <property name="name">
+                <cstring>mNextButton</cstring>
+            </property>
+            <property name="enabled">
+                <bool>false</bool>
+            </property>
+            <property name="text">
+                <string>&amp;Next</string>
+            </property>
+            <property name="accel">
+                <string>Alt+N</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="3" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>mFinishedButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Finished</string>
+            </property>
+            <property name="accel">
+                <string>Alt+F</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>mVerseTextLeadLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Verse text:</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="0">
+            <property name="name">
+                <cstring>mVerseLeadLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>4</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Reference:</string>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="2" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>mReferenceText</cstring>
+            </property>
+        </widget>
+        <widget class="QTextEdit" row="1" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>mVerseTextEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>mFinishedButton</sender>
+        <signal>clicked()</signal>
+        <receiver>QuizRefUI</receiver>
+        <slot>mFinishedButton_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>mNextButton</sender>
+        <signal>clicked()</signal>
+        <receiver>QuizRefUI</receiver>
+        <slot>mNextButton_clicked()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>mFinishedButton_clicked()</slot>
+    <slot>mNextButton_clicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

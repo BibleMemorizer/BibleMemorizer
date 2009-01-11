@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<versecollection generator="BibleMemorizer 0.6.0 (Qt)" version="1.3" >
+    <usercategories>
+        <category>Category 1</category>
+        <category>Category 2</category>
+        <category>Category 3</category>
+    </usercategories>
+    <verse>
+        <reference>
+            <book>John</book>
+            <ubook>
+                <testament>nt</testament>
+                <book>4</book>
+            </ubook>
+            <chapter>3</chapter>
+            <verses>16</verses>
+        </reference>
+        <translation>KJV</translation>
+        <text>For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</text>
+        <categories/>
+    </verse>
+    <verse>
+        <reference>
+            <book>Genesis</book>
+            <ubook>
+                <testament>ot</testament>
+                <book>1</book>
+            </ubook>
+            <chapter>1</chapter>
+            <verses>1</verses>
+        </reference>
+        <translation>KJV</translation>
+        <text>In the beginning God created the heaven and the earth.</text>
+        <categories>
+            <category>Category 1</category>
+            <category>Category 3</category>
+        </categories>
+    </verse>
+    <verse>
+        <reference>
+            <book>Romans</book>
+            <ubook>
+                <testament>nt</testament>
+                <book>6</book>
+            </ubook>
+            <chapter>3</chapter>
+            <verses>23</verses>
+        </reference>
+        <translation>KJV</translation>
+        <text>For all have sinned, and come short of the glory of God</text>
+        <categories/>
+    </verse>
+</versecollection>

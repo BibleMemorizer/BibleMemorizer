@@ -1,0 +1,11 @@
+FileName=liblang_en
+Name=English Book Names
+ShortName=English
+Version=0.3
+Description=Provides names in English for the 66 books of the Bible.
+InterfaceVersion=0.3
+AuthorFile=authors.lang_en
+WebSite=http://biblememorizer.sf.net
+Copyright=Copyright © 2005-2009 Jeremy Erickson
+License=MIT/X11
+LicenseFile=license.lang_en.html

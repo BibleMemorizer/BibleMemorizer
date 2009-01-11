@@ -1,0 +1,11 @@
+#!/bin/sh
+make clean
+rm -f bin/biblememorizer
+rm -f plugins/crosswire/libcrosswire.so
+rm -f plugins/lang_en/liblang_en.so
+rm -f Makefile
+rm -f src/Makefile
+rm -f plugins/Makefile
+rm -f plugins/crosswire/Makefile
+rm -f plugins/lang_en/Makefile
+rm -f qmake_vars

@@ -1,0 +1,101 @@
+BibleMemorizer is based on Qt.  It uses the qmake installation system
+provided by Trolltech, the makers of Qt (http://www.trolltech.com).
+First install Qt, if it is not present.  It is included with most Linux
+distributions (All KDE users have it, but they may not have the
+-devel package often necessary for compiling.)  You may use either Qt 3 or Qt 4
+to build BibleMemorizer.  (On Windows, only Qt 4 is freely available.)
+Installation steps vary based on your platform.
+
+
+Unix (Including Mac OS X - but see notes below)
+===============================================
+
+Although BibleMemorizer does not use the automake/autoconfigure system that
+most packages use, you may use it in a very similar manner.  The provided
+./configure script sets the appropriate options in qmake_vars and runs QMake
+for you.  If you have more than one version of Qt installed, make sure that
+"qmake -v" returns the appropriate version.  If not, set your PATH variable so
+that the appropriate qmake executable is run.
+
+./configure now has quite a few options for you to configure.  You can type
+"./configure --help" to get a list of options and what they do.  Do note that
+Sword options are now set automatically on systems with a properly configured
+pkg-config installation, but can still be set manually for other systems.
+
+After running ./configure, run "make" and then (as root) "make install" to
+install BibleMemorizer.
+
+
+Mac OS X
+========
+
+The same ./configure system as Unix works on Mac OS X, and includes special
+options if you wish to build a universal binary (see ./configure --help).  The
+supported method for building BibleMemorizer is to create an application
+bundle.  However, the bundle created by QMake does not include the plugins in
+the proper place or the libraries needed to distribute BibleMemorizer to a
+system without Qt.
+
+The plugins need to be edited so that they contain ".dylib" at the end of the
+FileName field, and the Plugins directory needs to be moved into
+BibleMemorizer.app/Contents.  In addition, if Qt was built against frameworks,
+then the frameworks should be included in the bundle if it is intended for
+distribution to other machines.  The script "osx-bundle-prepare.pl" is included
+to automate both of these tasks.  "osx-bundle-prepare.pl" takes one parameter,
+the "--prefix" option you passed to ./configure.  Thus, the recommended
+procedure:
+
+export QMAKESPEC=macx-g++
+./configure --prefix=$PWD/build {other options, as appropriate}
+make
+make install
+./osx-bundle-prepare.pl build
+
+Note that the option passed to --prefix must be an absolute path, but the
+option to osx-bundle-prepare.pl doesn't need to be.
+
+osx-bundle-prepare.pl will prompt for whether to include Qt frameworks in the
+bundle.
+
+After this procedure, the copy of BibleMemorizer.app inside build (NOT the copy
+inside bin) is ready for use.
+
+
+WINDOWS
+=======
+
+The Windows install has been tested using Qt 4.4.3's MinGW-based binary
+install.
+
+The first step on Windows is to perform the same tasks as the ./configure
+script.  The ./configure script should work just fine inside a Bash-compatible
+environment such as MSYS or Cygwin.  In this case, just run
+"./configure --help" and run ./configure with appropriate options.  If this
+does not work, create ./qmake_vars and add the appropriate variable
+definitions, as follows:
+
+If you want to use Sword, you need to set these three variables:
+CONFIG += sword
+SWORD_PATH = {path to Sword include folder}
+SWORD_LIB = {compiler flag needed for linking to Sword}
+
+You also need to set:
+MAIN_PATH = {Your installation folder, e.g. "C:\Program Files\BibleMemorizer"}
+
+CONFIG += {release OR debug}
+
+Once qmake_vars is set up, run:
+
+qmake -o Makefile biblememorizer.pro
+
+Then, whether the ./configure script worked or you had to do the work manually,
+just run:
+
+make
+make install
+
+On Windows, you will have to edit the .plugin files (with plugin
+metadata) in order for BibleMemorizer to work, as library names are
+not preceded by "lib" on Windows.  These files are located in
+$${MAIN_PATH}/plugins, where $${MAIN_PATH} is the parameter you passed to the
+"--prefix" parameter if ./configure worked.  Then you should be good to go.

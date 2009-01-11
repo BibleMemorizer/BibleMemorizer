@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+]>
+<refentry>
+  <refentryinfo>
+    <author>
+      <firstname>Raphaël</firstname>
+      <surname>Pinson</surname>
+      <email>raphink@ubuntu.com</email>
+    </author>
+    <author>
+      <firstname>Jeremy</firstname>
+      <surname>Erickson</surname>
+      <email>jerickson314@users.sourceforge.net</email>
+    </author>
+    <copyright>
+      <year>2007</year>
+      <holder>Raphaël Pinson</holder>
+    </copyright>
+    <copyright>
+      <year>2008</year>
+      <holder>Jeremy Erickson</holder>
+    </copyright>
+    <!-- XXX IMPORTANT XXX -->
+    <!-- Keep this date up to date: -->
+    <date>2008-12-25</date>
+    <!--  ^^^^^^^^^^ -->
+  </refentryinfo>
+  <refmeta>
+    <refentrytitle>biblememorizer</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+  <refnamediv>
+    <refname>biblememorizer</refname>
+    <refpurpose> Bible memorizer program</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>biblememorizer</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>DESCRIPTION</title>
+    <para>
+ BibleMemorizer is a program to help with memorizing Scripture. It allows you
+ to create files with lists of verses you want to memorize, including the text
+ of the verse and any categories you create.  You can also be quizzed over your
+ verses.
+ </para>
+ <para>
+ BibleMemorizer uses plugins to import texts, including a plugin to use the
+ Sword API. Texts are then imported from the Sword Bible modules installed on
+ your system.
+    </para>
+ <para>
+ Although BibleMemorizer doesn't take --help, it does take the standard options
+ for the version of Qt against which it was built.
+ </para>
+  </refsect1>
+  <refsect1>
+    <title>COPYRIGHT</title>
+    <para>
+      This manual page was written by Raphaël Pinson
+      &lt;<email>raphink@ubuntu.com</email>&gt; for the
+      <productname>Debian</productname> system (but may be used by others).
+      Permission is granted to copy, distribute and/or modify this document
+      under the terms of the <acronym>GNU</acronym> General Public License,
+      Version 2 or any later version published by the Free Software Foundation.
+    </para>
+    <para>
+      This page was updated by Jeremy Erickson 
+      &lt;<email>jerickson314@users.sourceforge.net</email>&gt;.  Permission is
+      granted to copy, distribute, and/or modify this document under the terms
+      of the <acronym>GNU</acronym> General Public License, Version 2 or any
+      later version published by the Free Software Foundation.
+    </para>
+    <para>
+      On Debian systems, the complete text of the GNU General Public
+      License can be found in
+      <filename>/usr/share/common-licenses/GPL</filename>.
+    </para>
+  </refsect1>
+</refentry>
+

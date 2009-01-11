@@ -1,0 +1,90 @@
+2009-01-10 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.6.4
+	-Fixes STL-related build errors on some platforms from missing headers,
+	should work on Qt with -no-sql now.
+	-Removed the button to collapse the verse list, which didn't work on Qt 4
+	 builds and took up space.
+	-A couple of Windows build tweaks.
+2009-01-01 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.6.3
+	-Sword plugin improvements: now properly excludes footnotes, etc. and
+	 handles spacing between verses.
+	-Warns when plugin (currently the Sword plugin) is about to fetch a large
+	 number of verses.
+	-Plugin loader now properly checks version for compatibility.
+	-Fixed bug on Unix where "make uninstall" would delete non-BibleMemorizer
+	 icons.
+	-Changed labels to read-only text boxes for verse display, to handle long
+	 passages.
+2008-12-31 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.6.2
+	-More build system improvements, including preliminary Windows support.
+	-More robust error handling for bad files and plugin problems
+	-BiblePlugin and BiblePluginMeta are now QObject subclasses and so
+	 properly support tr()
+2008-12-29 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.6.1
+	-Numerous build system improvements (more ./config options, etc.)
+	-Icons and .desktop file are now installed by default.
+	-Mac OS X is now a first-class platform, with proper application bundle
+	 icon behavior, plugin finding, and a script for setting up the bundle.
+2008-12-25 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New release: Version 0.6
+	-New multi-verse quiz feature, including reference quizzing
+	-Quiz error finding is more fine-grained, and can ignore spelling,
+	 capitalization, and punctuation errors.
+	-Categories stored in a more logical manner in the XML (based on a
+	 suggestion by Olaf Radicke) and now support ";" in the names
+	-Proper error handling on loading of invalid verse files.
+	-Included some build files, etc. provided by Raphaël Pinson
+	<raphink@ubuntu.com>
+	-Numerous internal changes not directly visible to user:
+		-Split code into core/ and ui/ directories as appropriate.
+		-Created a more proper search algorithm that pre-parses the query.
+		-Removed the VerseWatcher class in favor of native Qt signal/slot
+		 functionality.
+		-Added additional use of Qt signal/slot functionality to abstract
+		 changes away from the MainAct class.
+		-Verse and VerseCollection are now QObjects, and VerseCollection
+		 handles deleting Verse objects automatically as a result.
+		-Split off the verse selection into a new VerseSelectAct class that is
+		 also used when writing quizzes.
+2006-12-27 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.5.2
+	-Fixed glibc free() error on crosswire plugin.
+2006-12-27 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New minor release: Version 0.5.1
+	-Fixed a couple copyright years.
+	-Updated the Sword plugin to handle UTF-8 correctly.
+2006-12-27 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New Release: Version 0.5
+	-Fixed several plugin issues that could cause segfaulting.
+	-New, more flexible search query system.
+	-Can now automatically load the last opened file on startup.
+	-Can now set a default translation.
+	-uBook in files more readable (uses "ot" and "nt" for testament when
+	possible)
+	-Crosswire plugin works with Sword 1.5.9
+	-The verse list is ordered.
+2005-11-27 Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New release: Version 0.4
+	-The "Edit" menu now works.  (Binds to active widget, essentially.)
+	-The "Quiz" feature has been implemented.
+	-Plugins can now report the number of chapters in a book.
+	-Plugin failures should now result in helpful errors instead of segfaults.
+	-Fixed another bug where BibleMemorizer would always segfault.
+	-Support for building on Qt 4.  (Now works with both Qt 3 and Qt 4.)
+2005-05-06	Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New release: Version 0.3
+	-Features separated into plugins.
+	-uBooks added to verse capabilities, to allow different plugins to interact.
+	-MIT single license (except GPL for Sword plugin).
+	-Code cleaned up a bit and made more logical.
+2005-04-12	Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*New release: Version 0.2
+	-Now with Sword integration available.
+	-Now searches verses.
+	-Chapter field now separate from "Verses".
+	-MIT/GPL dual license.
+2005-03-21	Jeremy Erickson <jerickson314@users.sourceforge.net>
+	*First release of BibleMemorizer: Version 0.1
