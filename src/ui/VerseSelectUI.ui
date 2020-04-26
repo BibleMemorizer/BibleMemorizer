@@ -86,7 +86,7 @@
   </connection>
   <connection>
    <sender>mVerseListBox</sender>
-   <signal>doubleClicked(QListWidgetItem*)</signal>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
    <receiver>VerseSelectUI</receiver>
    <slot>mVerseListBox_doubleClicked(QListWidgetItem*)</slot>
    <hints>
@@ -102,7 +102,7 @@
   </connection>
   <connection>
    <sender>mVerseListBox</sender>
-   <signal>selectionChanged()</signal>
+   <signal>itemSelectionChanged()</signal>
    <receiver>VerseSelectUI</receiver>
    <slot>mVerseListBox_selectionChanged()</slot>
    <hints>
@@ -117,4 +117,10 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mSearchButton_clicked()</slot>
+  <slot>mFilterComboBox_activated(int)</slot>
+  <slot>mVerseListBox_doubleClicked(QListWidgetItem*)</slot>
+  <slot>mVerseListBox_selectionChanged()</slot>
+ </slots>
 </ui>
