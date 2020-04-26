@@ -78,17 +78,17 @@ BiblePluginMeta::BiblePluginMeta(const QString& fileName)
 {
     QFile file(fileName);
     QFileInfo fileInfo(file);
-    bool success = file.open(bmemui::BIO_ReadOnly);
+    bool success = file.open(QIODevice::ReadOnly);
     if (!success)
         return;
     QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
+    stream.setCodec("UTF-8");
     while (!stream.atEnd())
     {
         QString nextLine = stream.readLine();
         if (nextLine.startsWith("FileName="))
         {
-            mFileName = QDir::cleanDirPath(fileInfo.dirPath(true) + "/" + 
+            mFileName = QDir::cleanPath(fileInfo.path() + "/" +
                     nextLine.mid(9));
         }
         if (nextLine.startsWith("Name="))
@@ -123,15 +123,15 @@ BiblePluginMeta::BiblePluginMeta(const QString& fileName)
         }
         else if (nextLine.startsWith("AuthorFile="))
         {
-            QString authorFileName = fileInfo.dirPath(true) + "/" + 
+            QString authorFileName = fileInfo.path() + "/" +
                     nextLine.mid(11);
             if (!nextLine.mid(11).isEmpty() && QFile::exists(authorFileName))
             {
                 QFile authorFile(authorFileName);
-                authorFile.open(bmemui::BIO_ReadOnly);
+                authorFile.open(QIODevice::ReadOnly);
                 QTextStream authorStream(&authorFile);
-                authorStream.setEncoding(QTextStream::UnicodeUTF8);
-                mAuthors = authorStream.read();
+                authorStream.setCodec("UTF-8");
+                mAuthors = authorStream.readLine();
                 authorFile.close();
             }
             if (mAuthors.isEmpty())
@@ -157,15 +157,15 @@ BiblePluginMeta::BiblePluginMeta(const QString& fileName)
         }
         else if (nextLine.startsWith("LicenseFile="))
         {
-            QString licenseFileName = fileInfo.dirPath(true) + "/" + 
+            QString licenseFileName = fileInfo.path() + "/" +
                     nextLine.mid(12);
             if (!nextLine.mid(12).isEmpty() && QFile::exists(licenseFileName))
             {
                 QFile licenseFile(licenseFileName);
-                licenseFile.open(bmemui::BIO_ReadOnly);
+                licenseFile.open(QIODevice::ReadOnly);
                 QTextStream licenseStream(&licenseFile);
-                licenseStream.setEncoding(QTextStream::UnicodeUTF8);
-                mLicense = licenseStream.read();
+                licenseStream.setCodec("UTF-8");
+                mLicense = licenseStream.readLine();
                 licenseFile.close();
             }
             if (mLicense.isEmpty())
@@ -179,7 +179,7 @@ QString BiblePluginMeta::getBaseName() const
 {
     //Matches any number of non-slash characters followed by .plugin at the end
     QRegExp nameExp("([^\\\\\\/]*)\\.plugin$");
-    nameExp.search(mMetaFileName);
+    nameExp.indexIn(mMetaFileName);
     return nameExp.cap(1);
 }
 
