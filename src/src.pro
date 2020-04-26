@@ -121,5 +121,5 @@ win32{
 
 INSTALLS += target
 CONFIG += uic3
-QT += qt3support \
-xml
+QT += xml \
+      widgets
