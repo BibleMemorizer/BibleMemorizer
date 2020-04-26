@@ -24,7 +24,7 @@
 #ifndef BMEMUIVERSESELECTACT_H
 #define BMEMUIVERSESELECTACT_H
 
-#include "VerseSelectUI.h"
+#include "ui_VerseSelectUI.h"
 #include "core/verse.h"
 #include <list>
 #include <map>

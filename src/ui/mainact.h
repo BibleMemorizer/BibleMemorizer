@@ -24,7 +24,7 @@
 #ifndef BMEMUIMAINACT_H
 #define BMEMUIMAINACT_H
 
-#include "MainUI.h"
+#include "ui_MainUI.h"
 #include "core/versecollection.h"
 #include "ui/verseact.h"
 #include "ui/verseselectact.h"

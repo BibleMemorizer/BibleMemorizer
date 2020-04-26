@@ -24,7 +24,7 @@
 #ifndef BMEMUIABOUTACT_H
 #define BMEMUIABOUTACT_H
 
-#include "AboutUI.h"
+#include "ui_AboutUI.h"
 
 class QWidget;
 

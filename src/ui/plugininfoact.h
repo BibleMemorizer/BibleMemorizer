@@ -24,7 +24,7 @@
 #ifndef BMEMUIPLUGININFOACT_H
 #define BMEMUIPLUGININFOACT_H
 
-#include "PluginInfoUI.h"
+#include "ui_PluginInfoUI.h"
 namespace bmemcore
 {
     class BiblePluginMeta;

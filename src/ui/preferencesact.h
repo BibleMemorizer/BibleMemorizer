@@ -24,7 +24,7 @@
 #ifndef BMEMUIPREFERENCESACT_H
 #define BMEMUIPREFERNECESACT_H
 
-#include "PreferencesUI.h"
+#include "ui_PreferencesUI.h"
 #include <vector>
 #include <qstring.h>
 namespace bmemcore

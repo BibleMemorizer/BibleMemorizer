@@ -24,7 +24,7 @@
 #ifndef BMEMUIQUIZCREATEACT_H
 #define BMEMUIQUIZCREATEACT_H
 
-#include "QuizCreateUI.h"
+#include "ui_QuizCreateUI.h"
 #include "core/filterlist.h"
 #include "ui/quizmultiact.h"
 #include <vector>

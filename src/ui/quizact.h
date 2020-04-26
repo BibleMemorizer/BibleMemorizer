@@ -24,7 +24,7 @@
 #ifndef BMEMUIQUIZACT_H
 #define BMEMUIQUIZACT_H
 
-#include "QuizUI.h"
+#include "ui_QuizUI.h"
 #include "core/verse.h"
 #include <vector>
 using namespace bmemcore;

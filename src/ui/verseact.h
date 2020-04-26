@@ -24,7 +24,7 @@
 #ifndef BMEMUIVERSEACT_H
 #define BMEMUIVERSEACT_H
 class QTabWidget;
-#include "VerseUI.h"
+#include "ui_VerseUI.h"
 #include <qstringlist.h>
 #include "core/verse.h"
 namespace bmemcore
