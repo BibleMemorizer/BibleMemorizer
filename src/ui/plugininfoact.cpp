@@ -29,16 +29,19 @@ using bmemcore::BiblePluginMeta;
 
 PluginInfoAct::PluginInfoAct(const BiblePluginMeta& meta, QWidget *parent,
         const char *name)
-:PluginInfoUI(parent, name)
+:QDialog(parent)
 {
+    setupUi(this);
+
+    setWindowTitle(name);
+
     mNameLabel->setText(QString(meta.getName() + " " +
-            meta.getVersion()).simplifyWhiteSpace());
+            meta.getVersion()).simplified());
     mDescLabel->setText(meta.getDescription());
     mCopyrightLabel->setText(meta.getCopyright());
     mWebSiteLabel->setText(meta.getWebSite());
     mAuthorsField->setText(meta.getAuthors());
-    mTabs->changeTab(mTabs->page(2),
-            tr("License (%1)").arg(meta.getLicenseName()));
+    mTabs->setTabText(2, tr("License (%1)").arg(meta.getLicenseName()));
     mLicenseField->setText(meta.getLicense());
 }
 
