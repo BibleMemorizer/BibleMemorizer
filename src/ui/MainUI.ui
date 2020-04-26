@@ -278,8 +278,6 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="helpContentsAction"/>
-    <addaction name="helpIndexAction"/>
     <addaction name="helpAboutAction"/>
    </widget>
    <addaction name="fileMenu"/>
@@ -445,34 +443,6 @@
     <string>Ctrl+V</string>
    </property>
   </action>
-  <action name="helpContentsAction">
-   <property name="text">
-    <string>&amp;Contents...</string>
-   </property>
-   <property name="iconText">
-    <string>Contents</string>
-   </property>
-   <property name="shortcut">
-    <string/>
-   </property>
-   <property name="visible">
-    <bool>false</bool>
-   </property>
-  </action>
-  <action name="helpIndexAction">
-   <property name="text">
-    <string>&amp;Index...</string>
-   </property>
-   <property name="iconText">
-    <string>Index</string>
-   </property>
-   <property name="shortcut">
-    <string/>
-   </property>
-   <property name="visible">
-    <bool>false</bool>
-   </property>
-  </action>
   <action name="helpAboutAction">
    <property name="text">
     <string>&amp;About</string>
@@ -616,22 +586,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>helpIndexAction</sender>
-   <signal>triggered()</signal>
-   <receiver>MainUI</receiver>
-   <slot>helpIndex()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>fileExitAction</sender>
    <signal>triggered()</signal>
    <receiver>MainUI</receiver>
@@ -716,22 +670,6 @@
    <signal>triggered()</signal>
    <receiver>MainUI</receiver>
    <slot>fileNewAction_activated()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>helpContentsAction</sender>
-   <signal>triggered()</signal>
-   <receiver>MainUI</receiver>
-   <slot>helpContentsAction_activated()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -891,7 +829,6 @@
  <slots>
   <slot>fileExitAction_activated()</slot>
   <slot>helpAboutAction_activated()</slot>
-  <slot>helpContentsAction_activated()</slot>
   <slot>fileNewAction_activated()</slot>
   <slot>fileSaveAsAction_activated()</slot>
   <slot>fileSaveAction_activated()</slot>

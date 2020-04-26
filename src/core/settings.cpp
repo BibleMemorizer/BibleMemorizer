@@ -68,28 +68,6 @@ QString Settings::getLastFile()
     return qSettings().value("/session/file", "").toString();
 }
 
-void Settings::setWebBrowser(const QString& browser)
-{
-    qSettings().setValue("/help/browser",
-            QDir::cleanPath(browser));
-}
-
-QString Settings::getWebBrowser()
-{
-    return qSettings().value("/help/browser", "").toString();
-}
-
-void Settings::setHelpDir(const QString& dir)
-{
-    qSettings().setValue("/help/directory",
-            QDir::cleanPath(dir));
-}
-
-QString Settings::getHelpDir()
-{
-    return qSettings().value("/help/directory", "").toString();
-}
-
 void Settings::setDefaultTranslation(const QString& translation)
 {
     qSettings().setValue("/general/default_translation",

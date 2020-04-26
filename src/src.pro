@@ -17,7 +17,6 @@ HEADERS	+= core/bibleplugin.h \
 	core/filterquery.h \
 	core/filtersearchatom.h \
 	core/filtertestament.h \
-	core/help.h \
 	core/searchfilter.h \
 	core/settings.h \
 	core/ubook.h \
@@ -48,7 +47,6 @@ SOURCES	+= biblememorizer.cpp \
 	core/filterquery.cpp \
 	core/filtersearchatom.cpp \
 	core/filtertestament.cpp \
-	core/help.cpp \
 	core/searchfilter.cpp \
 	core/settings.cpp \
 	core/verse.cpp \

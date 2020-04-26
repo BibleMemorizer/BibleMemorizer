@@ -58,7 +58,6 @@ public slots:
     virtual void mAddButton_clicked();
     virtual void helpAboutAction_activated();
     virtual void mVerseSelection_selectionChanged(bool);
-    virtual void helpContentsAction_activated();
     virtual void mOpenButton_clicked();
     virtual void fileNewAction_activated();
     virtual void mRemoveButton_clicked();

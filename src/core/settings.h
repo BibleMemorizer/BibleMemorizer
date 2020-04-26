@@ -70,32 +70,6 @@ public:
       * or the empty string if unspecified.
       */
     static QString getLastFile();
-    /** Sets the web browser executable to use.
-      * This will be used to display the help file.
-      * The path information may be omitted if the default
-      * shell can run the browser without it on the user's computer.
-      * (e.g. "konqueror" will work if in the user or system path;
-      * "/usr/kde/3.3/bin/konqueror" will work as well but is unnecessary.)
-      * @param browser The executable.
-      */
-    static void setWebBrowser(const QString& browser);
-    /** Gets the web browser executable to use.
-      * This will be in the same form as inputted.
-      * (i.e. "konqueror" will stay "konqueror" and will not
-      * become "/usr/kde/3.3/bin/konqueror".)
-      * @return The web browser executable,
-      * or the empty string if unspecified.
-      */
-    static QString getWebBrowser();
-    /** Sets the directory containing the help files.
-      * @param dir The directory with the help files.
-      */
-    static void setHelpDir(const QString& dir);
-    /** Gets the directory containing the help files.
-      * @return The directory with the help files,
-      * or the empty string if unspecified.
-      */
-    static QString getHelpDir();
     /** Sets the default translation to select for new verses.
       * @param translation The translation to use.
       */

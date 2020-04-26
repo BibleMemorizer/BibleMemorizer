@@ -388,10 +388,6 @@ void MainAct::fileNewAction_activated()
     }
 }
 
-void MainAct::helpContentsAction_activated()
-{
-}
-
 void MainAct::mAddCategoryButton_clicked()
 {
     bool ok;
