@@ -90,7 +90,7 @@ void Verse::parseElement(const QDomElement &element, const QStringList&
                                     if (elemSubSubNode.tagName() == "testament")
                                     {
                                         QString nodeText =
-                                                getNodeText(elemSubSubNode).stripWhiteSpace();
+                                                getNodeText(elemSubSubNode).trimmed();
                                         if (nodeText == "nt"){
                                             uBook.testament = NEW_TESTAMENT;
                                         }
@@ -152,8 +152,7 @@ void Verse::parseElement(const QDomElement &element, const QStringList&
               }
               else //legacyCats mode
               {
-                    setCategories(QStringList::split(";",
-                            getNodeText(elemNode)));
+                    setCategories(getNodeText(elemNode).split(";"));
               }
             }
         }
@@ -324,8 +323,7 @@ QStringList Verse::getCategories() const
 
 void Verse::addCategory(const QString& newCategory)
 {
-    QStringList::iterator it = mCategories.find(newCategory);
-    if (it == mCategories.end())
+    if (!mCategories.contains(newCategory))
     {
         mCategories.push_back(newCategory);
         notifyWatchers(CHANGE_CATEGORIES);
@@ -334,10 +332,8 @@ void Verse::addCategory(const QString& newCategory)
 
 bool Verse::removeCategory(const QString& oldCategory)
 {
-    QStringList::iterator it = mCategories.find(oldCategory);
-    if (it != mCategories.end())
+    if (mCategories.removeOne(oldCategory))
     {
-        mCategories.erase(it);
         notifyWatchers(CHANGE_CATEGORIES);
         return true;
     }
@@ -348,11 +344,10 @@ bool Verse::removeCategory(const QString& oldCategory)
 bool Verse::replaceCategory(const QString& oldCategory, const QString&
         newCategory)
 {
-    QStringList::iterator it = mCategories.find(oldCategory);
-    if (it != mCategories.end())
+    int i = mCategories.indexOf(oldCategory);
+    if (i != -1)
     {
-        it = mCategories.erase(it);
-        mCategories.insert(it, newCategory);
+        mCategories.replace(i, newCategory);
         return true;
     }
     else
@@ -361,8 +356,7 @@ bool Verse::replaceCategory(const QString& oldCategory, const QString&
 
 bool Verse::containsCategory(const QString& category) const
 {
-    QStringList::const_iterator it = mCategories.find(category);
-    return (it != mCategories.end());
+    return mCategories.contains(category);
 }
 
 QString Verse::getReference() const
@@ -370,16 +364,16 @@ QString Verse::getReference() const
     QString toReturn;
     toReturn += getBook();
     toReturn += " ";
-    if (!getChapter().stripWhiteSpace().isEmpty())
+    if (!getChapter().trimmed().isEmpty())
     {
         toReturn += getChapter();
-        if (!getVerses().stripWhiteSpace().isEmpty())
+        if (!getVerses().trimmed().isEmpty())
         {
             toReturn += ":";
         }
     }
     toReturn += getVerses();
-    toReturn = toReturn.simplifyWhiteSpace();
+    toReturn = toReturn.simplified();
     if (toReturn.isEmpty())
     {
         toReturn = tr("<No Reference>");
@@ -431,7 +425,7 @@ QString Verse::getNodeText(QDomElement &element)
 
 QStringList Verse::tokenize(const QString& text)
 {
-    return QStringList::split(QRegExp("\\s+"), text, false);
+    return text.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 }
 
 bool Verse::checkText(const QString& text)
@@ -625,16 +619,16 @@ int Verse::compareTo(const Verse& other) const
         return getChapter().toInt() - other.getChapter().toInt();
     }
     else{
-        QString myVerses = getVerses().stripWhiteSpace();
+        QString myVerses = getVerses().trimmed();
         for (int i = 0; i < myVerses.length(); i++){
-            if (!myVerses.ref(i).isDigit()){
+            if (!myVerses[i].isDigit()){
                 myVerses.remove(i, myVerses.length());
                 break;
             }
         }
-        QString otherVerses = other.getVerses().stripWhiteSpace();
+        QString otherVerses = other.getVerses().trimmed();
         for (int i = 0; i < otherVerses.length(); i++){
-            if (!otherVerses.ref(i).isDigit()){
+            if (!otherVerses[i].isDigit()){
                 otherVerses.remove(i, otherVerses.length());
             }
         }
