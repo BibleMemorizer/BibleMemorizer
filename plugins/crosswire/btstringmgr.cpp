@@ -19,12 +19,8 @@ char* BTStringMgr::upperUTF8(char* text, unsigned int maxlen) const {
 	const int max = (maxlen>0) ? maxlen : strlen(text);
 
 	if (isUtf8(text)) {
-        #if QT_VERSION >= 0x040000
         strncpy(text, (const char*)QString::fromUtf8(text).toUpper().toUtf8(),
                 max);
-        #else
-		strncpy(text, (const char*)QString::fromUtf8(text).upper().utf8(), max);
-        #endif
 		return text;
 	}
 	else {

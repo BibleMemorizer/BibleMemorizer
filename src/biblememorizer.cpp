@@ -35,9 +35,7 @@ using namespace bmemui;
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-#if QT_VERSION >= 0x040000
     app.setQuitOnLastWindowClosed(false);
-#endif
     //Seed random number generator for quiz randomization.
     srand(unsigned(time(NULL)));
     MainAct mainui;

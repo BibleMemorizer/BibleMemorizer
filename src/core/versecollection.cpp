@@ -27,9 +27,7 @@
 #include <qfile.h>
 #include <qstringlist.h>
 #include <qdom.h>
-#if QT_VERSION >= 0x040000
 #include <QTextStream>
-#endif
 #include <algorithm>
 #include <list>
 

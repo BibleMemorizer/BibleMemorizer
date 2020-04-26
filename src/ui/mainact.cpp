@@ -113,15 +113,9 @@ MainAct::MainAct(QWidget *parent, const char *name)
 :MainUI(parent, name), currWidget(NULL), mVerses(new VerseCollection()),
         mVerseSelection(new VerseSelectAct(mNavFrame, false, mVerses))
 {
-#if QT_VERSION >= 0x040000
     mCategoryNoticeLabel->setWordWrap(true);
-#endif
 #ifndef Q_OS_MAC
-#if QT_VERSION >= 0x040000
     QPixmap img;
-#else
-    QImage img;
-#endif
     img.loadFromData( icon_data, sizeof( icon_data ), "PNG" );
     setIcon(img);
 #endif

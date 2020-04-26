@@ -32,11 +32,9 @@ namespace bmemui
 AboutAct::AboutAct(QWidget *parent, const char * name, bool modal)
 :AboutUI(parent, name, modal)
 {
-#if QT_VERSION >= 0x040000
     mDescLabel->setWordWrap(true);
     mitLabel->setWordWrap(true);
     gplLabel->setWordWrap(true);
-#endif
     mAppNameLabel->setText("BibleMemorizer " BMEM_VERSION_STR);
 }
         

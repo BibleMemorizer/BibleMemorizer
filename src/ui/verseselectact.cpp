@@ -239,11 +239,7 @@ void VerseSelectAct::recreateList(){
         if (mSearchFilter && mSearchFilter != mSearchQuery){
             delete mSearchFilter;
         }
-#if QT_VERSION >= 0x040000
         switch (mFilterComboBox->currentIndex()){
-#else
-        switch (mFilterComboBox->currentItem()){
-#endif
             case 0:
                 mSearchFilter = new FilterQuery("true");
                 break;
