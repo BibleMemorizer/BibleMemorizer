@@ -1,96 +1,86 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>VerseSelectUI</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>VerseSelectUI</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0" stdsetdef="1">
+  <author></author>
+  <comment></comment>
+  <exportmacro></exportmacro>
+  <class>VerseSelectUI</class>
+  <widget class="QWidget" name="VerseSelectUI">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>247</width>
-            <height>480</height>
-        </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>247</width>
+        <height>480</height>
+      </rect>
     </property>
-    <property name="caption">
-        <string>VerseSelectUI</string>
+    <property name="windowTitle">
+      <string>VerseSelectUI</string>
     </property>
-    <vbox>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QPushButton">
-            <property name="name">
-                <cstring>mSearchButton</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
+    <layout class="QVBoxLayout">
+      <item>
+        <widget class="QPushButton" name="mSearchButton">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>0</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="text">
+            <string>Search...</string>
+          </property>
+        </widget>
+      </item>
+      <item>
+        <widget class="QComboBox" name="mFilterComboBox">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>0</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+        </widget>
+      </item>
+      <item>
+        <widget class="Q3ListBox" name="mVerseListBox">
+          <item>
             <property name="text">
-                <string>Search...</string>
+              <string>New Item</string>
             </property>
+          </item>
         </widget>
-        <widget class="QComboBox">
-            <property name="name">
-                <cstring>mFilterComboBox</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-        </widget>
-        <widget class="QListBox">
-            <item>
-                <property name="text">
-                    <string>New Item</string>
-                </property>
-            </item>
-            <property name="name">
-                <cstring>mVerseListBox</cstring>
-            </property>
-        </widget>
-    </vbox>
-</widget>
-<connections>
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="0"/>
+  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <connections>
     <connection>
-        <sender>mSearchButton</sender>
-        <signal>clicked()</signal>
-        <receiver>VerseSelectUI</receiver>
-        <slot>mSearchButton_clicked()</slot>
+      <sender>mSearchButton</sender>
+      <signal>clicked()</signal>
+      <receiver>VerseSelectUI</receiver>
+      <slot>mSearchButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mFilterComboBox</sender>
-        <signal>activated(int)</signal>
-        <receiver>VerseSelectUI</receiver>
-        <slot>mFilterComboBox_activated(int)</slot>
+      <sender>mFilterComboBox</sender>
+      <signal>activated(int)</signal>
+      <receiver>VerseSelectUI</receiver>
+      <slot>mFilterComboBox_activated(int)</slot>
     </connection>
     <connection>
-        <sender>mVerseListBox</sender>
-        <signal>doubleClicked(QListBoxItem*)</signal>
-        <receiver>VerseSelectUI</receiver>
-        <slot>mVerseListBox_doubleClicked(QListBoxItem*)</slot>
+      <sender>mVerseListBox</sender>
+      <signal>doubleClicked(Q3ListBoxItem*)</signal>
+      <receiver>VerseSelectUI</receiver>
+      <slot>mVerseListBox_doubleClicked(Q3ListBoxItem*)</slot>
     </connection>
     <connection>
-        <sender>mVerseListBox</sender>
-        <signal>selectionChanged()</signal>
-        <receiver>VerseSelectUI</receiver>
-        <slot>mVerseListBox_selectionChanged()</slot>
+      <sender>mVerseListBox</sender>
+      <signal>selectionChanged()</signal>
+      <receiver>VerseSelectUI</receiver>
+      <slot>mVerseListBox_selectionChanged()</slot>
     </connection>
-</connections>
-<slots>
-    <slot specifier="pure virtual">mSearchButton_clicked()</slot>
-    <slot specifier="pure virtual">mFilterComboBox_activated( int )</slot>
-    <slot specifier="pure virtual">mVerseListBox_doubleClicked( QListBoxItem * )</slot>
-    <slot specifier="pure virtual">mVerseListBox_selectionChanged()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="0"/>
-</UI>
+  </connections>
+</ui>

@@ -1,173 +1,168 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>QuizUI</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>QuizUI</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0" stdsetdef="1">
+  <author></author>
+  <comment></comment>
+  <exportmacro></exportmacro>
+  <class>QuizUI</class>
+  <widget class="QWidget" name="QuizUI">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>603</width>
-            <height>480</height>
-        </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>603</width>
+        <height>480</height>
+      </rect>
     </property>
-    <property name="caption">
-        <string>Form1</string>
+    <property name="windowTitle">
+      <string>Form1</string>
     </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QLabel" row="0" column="1" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>mVerseLabel</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>5</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
+    <layout class="QGridLayout">
+      <item row="0" column="1" rowspan="1" colspan="2">
+        <widget class="QLabel" name="mVerseLabel">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+          <property name="wordWrap">
+            <bool>false</bool>
+          </property>
         </widget>
-        <widget class="QLabel" row="0" column="0">
-            <property name="name">
-                <cstring>mVerseLeadLabel</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>4</hsizetype>
-                    <vsizetype>5</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string>Verse:</string>
-            </property>
+      </item>
+      <item row="0" column="0">
+        <widget class="QLabel" name="mVerseLeadLabel">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>4</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="text">
+            <string>Verse:</string>
+          </property>
+          <property name="wordWrap">
+            <bool>false</bool>
+          </property>
         </widget>
-        <widget class="QLabel" row="1" column="0" rowspan="1" colspan="6">
-            <property name="name">
-                <cstring>mEntryLeadLabel</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>5</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string>Enter the verse text below:</string>
-            </property>
+      </item>
+      <item row="1" column="0" rowspan="1" colspan="6">
+        <widget class="QLabel" name="mEntryLeadLabel">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="text">
+            <string>Enter the verse text below:</string>
+          </property>
+          <property name="wordWrap">
+            <bool>false</bool>
+          </property>
         </widget>
-        <widget class="QTextEdit" row="2" column="0" rowspan="1" colspan="6">
-            <property name="name">
-                <cstring>mVerseEdit</cstring>
-            </property>
+      </item>
+      <item row="2" column="0" rowspan="1" colspan="6">
+        <widget class="Q3TextEdit" name="mVerseEdit"/>
+      </item>
+      <item row="3" column="0" rowspan="1" colspan="2">
+        <widget class="QPushButton" name="mCheckButton">
+          <property name="text">
+            <string>&amp;Check</string>
+          </property>
+          <property name="shortcut">
+            <string>Alt+C</string>
+          </property>
         </widget>
-        <widget class="QPushButton" row="3" column="0" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>mCheckButton</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;Check</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
+      </item>
+      <item row="3" column="2">
+        <widget class="QPushButton" name="mCorrectButton">
+          <property name="text">
+            <string>Co&amp;rrect</string>
+          </property>
+          <property name="shortcut">
+            <string>Alt+R</string>
+          </property>
         </widget>
-        <widget class="QPushButton" row="3" column="2">
-            <property name="name">
-                <cstring>mCorrectButton</cstring>
-            </property>
-            <property name="text">
-                <string>Co&amp;rrect</string>
-            </property>
-            <property name="accel">
-                <string>Alt+R</string>
-            </property>
+      </item>
+      <item row="3" column="3">
+        <widget class="QPushButton" name="mClearButton">
+          <property name="text">
+            <string>Cle&amp;ar</string>
+          </property>
+          <property name="shortcut">
+            <string>Alt+A</string>
+          </property>
         </widget>
-        <widget class="QPushButton" row="3" column="3">
-            <property name="name">
-                <cstring>mClearButton</cstring>
-            </property>
-            <property name="text">
-                <string>Cle&amp;ar</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
-            </property>
+      </item>
+      <item row="3" column="4">
+        <widget class="QLabel" name="mResultLabel">
+          <property name="sizePolicy">
+            <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>5</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+          <property name="wordWrap">
+            <bool>false</bool>
+          </property>
         </widget>
-        <widget class="QLabel" row="3" column="4">
-            <property name="name">
-                <cstring>mResultLabel</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>5</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
+      </item>
+      <item row="3" column="5">
+        <widget class="QPushButton" name="mNextButton">
+          <property name="enabled">
+            <bool>false</bool>
+          </property>
+          <property name="text">
+            <string>&amp;Next</string>
+          </property>
+          <property name="shortcut">
+            <string>Alt+N</string>
+          </property>
         </widget>
-        <widget class="QPushButton" row="3" column="5">
-            <property name="name">
-                <cstring>mNextButton</cstring>
-            </property>
-            <property name="enabled">
-                <bool>false</bool>
-            </property>
-            <property name="text">
-                <string>&amp;Next</string>
-            </property>
-            <property name="accel">
-                <string>Alt+N</string>
-            </property>
-        </widget>
-    </grid>
-</widget>
-<connections>
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="11"/>
+  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <connections>
     <connection>
-        <sender>mCheckButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizUI</receiver>
-        <slot>mCheckButton_clicked()</slot>
+      <sender>mCheckButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizUI</receiver>
+      <slot>mCheckButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mCorrectButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizUI</receiver>
-        <slot>mCorrectButton_clicked()</slot>
+      <sender>mCorrectButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizUI</receiver>
+      <slot>mCorrectButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mClearButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizUI</receiver>
-        <slot>mClearButton_clicked()</slot>
+      <sender>mClearButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizUI</receiver>
+      <slot>mClearButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mNextButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizUI</receiver>
-        <slot>mNextButton_clicked()</slot>
+      <sender>mNextButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizUI</receiver>
+      <slot>mNextButton_clicked()</slot>
     </connection>
-</connections>
-<slots>
-    <slot>mCheckButton_clicked()</slot>
-    <slot>mCorrectButton_clicked()</slot>
-    <slot>mClearButton_clicked()</slot>
-    <slot>mNextButton_clicked()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+  </connections>
+</ui>

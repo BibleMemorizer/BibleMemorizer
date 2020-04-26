@@ -1,220 +1,189 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>QuizCreateUI</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>QuizCreateUI</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0" stdsetdef="1">
+  <author></author>
+  <comment></comment>
+  <exportmacro></exportmacro>
+  <class>QuizCreateUI</class>
+  <widget class="QDialog" name="QuizCreateUI">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>528</width>
-            <height>361</height>
-        </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>528</width>
+        <height>361</height>
+      </rect>
     </property>
-    <property name="caption">
-        <string>Create Quiz</string>
+    <property name="windowTitle">
+      <string>Create Quiz</string>
     </property>
     <property name="sizeGripEnabled">
-        <bool>true</bool>
+      <bool>true</bool>
     </property>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mSelectAllButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>30</x>
-                <y>240</y>
-                <width>110</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Select All</string>
-        </property>
+    <widget class="QPushButton" name="mSelectAllButton">
+      <property name="geometry">
+        <rect>
+          <x>30</x>
+          <y>240</y>
+          <width>110</width>
+          <height>20</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Select All</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mSelectNoneButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>30</x>
-                <y>280</y>
-                <width>111</width>
-                <height>21</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Select None</string>
-        </property>
+    <widget class="QPushButton" name="mSelectNoneButton">
+      <property name="geometry">
+        <rect>
+          <x>30</x>
+          <y>280</y>
+          <width>111</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Select None</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mSaveCategoryButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>350</x>
-                <y>210</y>
-                <width>151</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Save As Category...</string>
-        </property>
+    <widget class="QPushButton" name="mSaveCategoryButton">
+      <property name="geometry">
+        <rect>
+          <x>350</x>
+          <y>210</y>
+          <width>151</width>
+          <height>20</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Save As Category...</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mRightSelectAllButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>350</x>
-                <y>240</y>
-                <width>151</width>
-                <height>21</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Select All</string>
-        </property>
+    <widget class="QPushButton" name="mRightSelectAllButton">
+      <property name="geometry">
+        <rect>
+          <x>350</x>
+          <y>240</y>
+          <width>151</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Select All</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mRightSelectNoneButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>350</x>
-                <y>270</y>
-                <width>151</width>
-                <height>21</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Select None</string>
-        </property>
+    <widget class="QPushButton" name="mRightSelectNoneButton">
+      <property name="geometry">
+        <rect>
+          <x>350</x>
+          <y>270</y>
+          <width>151</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Select None</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mRemoveButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>200</x>
-                <y>164</y>
-                <width>104</width>
-                <height>24</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Remove &lt;&lt;</string>
-        </property>
+    <widget class="QPushButton" name="mRemoveButton">
+      <property name="geometry">
+        <rect>
+          <x>200</x>
+          <y>164</y>
+          <width>104</width>
+          <height>24</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Remove &lt;&lt;</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mAddButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>200</x>
-                <y>60</y>
-                <width>104</width>
-                <height>24</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Add &gt;&gt;</string>
-        </property>
+    <widget class="QPushButton" name="mAddButton">
+      <property name="geometry">
+        <rect>
+          <x>200</x>
+          <y>60</y>
+          <width>104</width>
+          <height>24</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Add &gt;&gt;</string>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mOKButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>367</x>
-                <y>320</y>
-                <width>47</width>
-                <height>24</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;OK</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-        <property name="autoDefault">
-            <bool>true</bool>
-        </property>
-        <property name="default">
-            <bool>true</bool>
-        </property>
+    <widget class="QPushButton" name="mOKButton">
+      <property name="geometry">
+        <rect>
+          <x>367</x>
+          <y>320</y>
+          <width>47</width>
+          <height>24</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>&amp;OK</string>
+      </property>
+      <property name="shortcut">
+        <string/>
+      </property>
+      <property name="autoDefault">
+        <bool>true</bool>
+      </property>
+      <property name="default">
+        <bool>true</bool>
+      </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>mCancelButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>420</x>
-                <y>320</y>
-                <width>73</width>
-                <height>24</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Cancel</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-        <property name="autoDefault">
-            <bool>true</bool>
-        </property>
+    <widget class="QPushButton" name="mCancelButton">
+      <property name="geometry">
+        <rect>
+          <x>420</x>
+          <y>320</y>
+          <width>73</width>
+          <height>24</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>&amp;Cancel</string>
+      </property>
+      <property name="shortcut">
+        <string/>
+      </property>
+      <property name="autoDefault">
+        <bool>true</bool>
+      </property>
     </widget>
-</widget>
-<connections>
+  </widget>
+  <layoutdefault spacing="6" margin="11"/>
+  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <connections>
     <connection>
-        <sender>mSaveCategoryButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizCreateUI</receiver>
-        <slot>mSaveCategoryButton_clicked()</slot>
+      <sender>mSaveCategoryButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizCreateUI</receiver>
+      <slot>mSaveCategoryButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mOKButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizCreateUI</receiver>
-        <slot>mOKButton_clicked()</slot>
+      <sender>mOKButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizCreateUI</receiver>
+      <slot>mOKButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mCancelButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizCreateUI</receiver>
-        <slot>reject()</slot>
+      <sender>mCancelButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizCreateUI</receiver>
+      <slot>reject()</slot>
     </connection>
     <connection>
-        <sender>mAddButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizCreateUI</receiver>
-        <slot>mAddButton_clicked()</slot>
+      <sender>mAddButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizCreateUI</receiver>
+      <slot>mAddButton_clicked()</slot>
     </connection>
     <connection>
-        <sender>mRemoveButton</sender>
-        <signal>clicked()</signal>
-        <receiver>QuizCreateUI</receiver>
-        <slot>mRemoveButton_clicked()</slot>
+      <sender>mRemoveButton</sender>
+      <signal>clicked()</signal>
+      <receiver>QuizCreateUI</receiver>
+      <slot>mRemoveButton_clicked()</slot>
     </connection>
-</connections>
-<slots>
-    <slot>mRemoveButton_clicked()</slot>
-    <slot>mAddButton_clicked()</slot>
-    <slot>mSaveCategoryButton_clicked()</slot>
-    <slot>mOKButton_clicked()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+  </connections>
+</ui>
