@@ -36,9 +36,11 @@ namespace bmemui
 
 QuizRefAct::QuizRefAct(std::vector<Verse*> verses, QWidget* parent,
         const char *name)
-:QuizRefUI(parent, name), mVerse(verses[0]), mVerses(verses), mCurrentVerse(0),
+:QWidget(parent), mVerse(verses[0]), mVerses(verses), mCurrentVerse(0),
         mNumCorrect(0), mNumAttempts(0)
 {
+    setupUi(this);
+
     initVerse();
     mFinishedButton->setDefault(true);
     if (mVerses.size() == 1)
@@ -67,8 +69,8 @@ void QuizRefAct::mFinishedButton_clicked()
     QString given = mReferenceText->text();
     
     //Be forgiving about case
-    correct = correct.lower();
-    given = given.lower();
+    correct = correct.toLower();
+    given = given.toLower();
     
     //Be forgiving about numbered books
     correct.replace(QRegExp("^i "), "1");
@@ -83,12 +85,10 @@ void QuizRefAct::mFinishedButton_clicked()
     given.replace(QRegExp("^2 "), "2");
     correct.replace(QRegExp("^3 "), "3");
     given.replace(QRegExp("^3 "), "3");
-    
-    QStringList correctParts = QStringList::split(QRegExp("\\s+"), correct,
-            false);
-    QStringList givenParts = QStringList::split(QRegExp("\\s+"), given,
-            false);
-    
+
+    QStringList correctParts = correct.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+    QStringList givenParts = given.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+
     bool match = false;
     if (correctParts.size() > 0 && givenParts.size() > 0)
     {

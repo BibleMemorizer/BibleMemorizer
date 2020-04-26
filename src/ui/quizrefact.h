@@ -34,7 +34,7 @@ class QWidget;
 namespace bmemui
 {
 
-class QuizRefAct: public QuizRefUI
+class QuizRefAct: public QWidget, public Ui_QuizRefUI
 {
     Q_OBJECT
 public:

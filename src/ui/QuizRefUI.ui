@@ -98,7 +98,7 @@
         <widget class="QLineEdit" name="mReferenceText"/>
       </item>
       <item row="1" column="0" rowspan="1" colspan="4">
-        <widget class="Q3TextEdit" name="mVerseTextEdit">
+        <widget class="QTextEdit" name="mVerseTextEdit">
           <property name="readOnly">
             <bool>true</bool>
           </property>
