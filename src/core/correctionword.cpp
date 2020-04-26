@@ -111,7 +111,7 @@ CorrectionWord::CorrectionWord(const QString& correct, const QString& given)
             ++it2;
             numCommon++;
         }
-        else if (correct[it1].lower() == given[it2].lower())
+        else if (correct[it1].toLower() == given[it2].toLower())
         {
             mWord.append(given[it2]);
             mLetterStates.push_back(LETTER_STATE_WRONG);
@@ -133,8 +133,8 @@ CorrectionWord::CorrectionWord(const QString& correct, const QString& given)
             int twoInOne = 0;
             int oneInTwo = 0;
             //Iterate until we find it.
-            while (it1Find < correct.length() && correct[it1Find].lower() !=
-                    given[it2].lower())
+            while (it1Find < correct.length() && correct[it1Find].toLower() !=
+                    given[it2].toLower())
             {
                 ++twoInOne;
                 ++it1Find;
@@ -143,8 +143,8 @@ CorrectionWord::CorrectionWord(const QString& correct, const QString& given)
             if (it1Find == correct.length())
                 twoInOne = combinedSize;
             //Same procedure as above.
-            while (it2Find < given.length() && given[it2Find].lower() !=
-                        correct[it1].lower())
+            while (it2Find < given.length() && given[it2Find].toLower() !=
+                        correct[it1].toLower())
             {
                 ++oneInTwo;
                 ++it2Find;
