@@ -1,0 +1,9 @@
+/src/moc_*
+*.o
+Makefile
+*.so
+bin/*
+src/ui_*.h
+/qmake_vars
+/*.pro.user
+/.qmake.stash
