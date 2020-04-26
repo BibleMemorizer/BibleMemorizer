@@ -234,4 +234,10 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mAddButton_clicked()</slot>
+  <slot>mRemoveButton_clicked()</slot>
+  <slot>mSaveCategoryButton_clicked()</slot>
+  <slot>mOKButton_clicked()</slot>
+ </slots>
 </ui>
