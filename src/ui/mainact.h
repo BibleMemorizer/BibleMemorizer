@@ -46,7 +46,7 @@ class QStringList;
 
 namespace bmemui
 {
-class MainAct: public MainUI
+class MainAct: public Ui_MainUI
 {
     Q_OBJECT
 public:

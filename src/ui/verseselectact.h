@@ -38,7 +38,7 @@ namespace bmemcore{
 namespace bmemui
 {
 using namespace bmemcore;
-class VerseSelectAct : public VerseSelectUI {
+class VerseSelectAct : public Ui_VerseSelectUI {
 Q_OBJECT
 public:
     VerseSelectAct(QWidget* parent, bool multiSelect, VerseCollection* coll,
