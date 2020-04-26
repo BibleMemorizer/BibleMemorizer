@@ -134,4 +134,8 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mFinishedButton_clicked()</slot>
+  <slot>mNextButton_clicked()</slot>
+ </slots>
 </ui>
