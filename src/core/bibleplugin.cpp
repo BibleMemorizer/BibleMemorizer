@@ -119,7 +119,7 @@ QStringList BiblePlugin::getBooks(const QString& translation)
         if (p_getBooks != NULL){
             int size = 0;
             const char * const * bookList = p_getBooks(&size,
-                    translation.utf8());
+                    translation.toUtf8().data());
             mBooksList = toStringList(bookList, size);
         }
         else{
@@ -135,8 +135,8 @@ QStringList BiblePlugin::getBooks(const QString& translation)
 bool BiblePlugin::booksChanged(const QString& translation)
 {
     if (p_booksChanged != NULL){
-        return static_cast<bool>(p_booksChanged(mLastTranslation.utf8(), 
-                translation.utf8()));
+        return static_cast<bool>(p_booksChanged(mLastTranslation.toUtf8().data(),
+                translation.toUtf8().data()));
     }
     else{
         QMessageBox::warning(NULL, tr("Plugin Error"), tr(
@@ -165,7 +165,7 @@ QString BiblePlugin::book(uBookType uBook)
 uBookType BiblePlugin::uBook(const QString& book)
 {
     if (p_uBook != NULL){
-        return p_uBook(book.utf8());
+        return p_uBook(book.toUtf8().data());
     }
     else{
         QMessageBox::warning(NULL, tr("Plugin Error"), tr(
@@ -216,7 +216,7 @@ QStringList BiblePlugin::getTranslations()
 int BiblePlugin::getNumChapters(const QString& book, uBookType uBook)
 {
     if (p_getNumChapters != NULL){
-        return p_getNumChapters(book.utf8(), uBook);
+        return p_getNumChapters(book.toUtf8().data(), uBook);
     }
     else{
         QMessageBox::warning(NULL, tr("Plugin Error"), tr(
@@ -249,8 +249,8 @@ QString BiblePlugin::getVerse(const QString& book, uBookType uBook,
             verses, translation))
     {
         if (p_getVerse != NULL){
-            return toString(p_getVerse(book.utf8(), uBook, chapter.utf8(),
-                    verses.utf8(), translation.utf8())).stripWhiteSpace();
+            return toString(p_getVerse(book.toUtf8().data(), uBook, chapter.toUtf8().data(),
+                    verses.toUtf8().data(), translation.toUtf8().data())).trimmed();
         }
         else{
             QMessageBox::warning(NULL, tr("Plugin Error"), tr(
@@ -274,8 +274,8 @@ bool BiblePlugin::verseAvailable(const QString& book, uBookType uBook,
     if (verseLoaderAvailable())
     {
         if (p_verseAvailable != NULL){
-            return static_cast<bool>(p_verseAvailable(book.utf8(), uBook,
-                    chapter.utf8(), verses.utf8(), translation.utf8()));
+            return static_cast<bool>(p_verseAvailable(book.toUtf8().data(), uBook,
+                    chapter.toUtf8().data(), verses.toUtf8().data(), translation.toUtf8().data()));
         }
         else{
             QMessageBox::warning(NULL, tr("Plugin Error"), tr(
@@ -297,8 +297,8 @@ int BiblePlugin::verseCount(const QString& book, uBookType uBook,
     if (verseLoaderAvailable())
     {
         if (p_verseCount != NULL){
-            return p_verseCount(book.utf8(), uBook,
-                    chapter.utf8(), verses.utf8(), translation.utf8());
+            return p_verseCount(book.toUtf8().data(), uBook,
+                    chapter.toUtf8().data(), verses.toUtf8().data(), translation.toUtf8().data());
         }
         else{
             QMessageBox::warning(NULL, tr("Plugin Error"), tr(
