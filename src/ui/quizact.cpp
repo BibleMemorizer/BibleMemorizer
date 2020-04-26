@@ -113,7 +113,7 @@ void QuizAct::mCorrectButton_clicked()
                 html += "</font>";
                 break;
             case CorrectionWord::WORD_STATE_ERRORS:
-                std::vector<bmemcore::CorrectionWord::LetterState> states =
+                QList<bmemcore::CorrectionWord::LetterState> states =
                         it->getLetterStates();
                 QString word = it->getWord();
                 for (int i = 0; i < word.length(); i++)

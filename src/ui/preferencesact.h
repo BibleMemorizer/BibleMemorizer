@@ -24,8 +24,7 @@
 #pragma once
 
 #include "ui_PreferencesUI.h"
-#include <vector>
-#include <qstring.h>
+
 namespace bmemcore
 {
     class BiblePluginMeta;
@@ -49,10 +48,9 @@ public slots:
     virtual void mInfoButton_clicked();
     virtual void mPluginListBox_selected(int);
 private:
-    static std::vector<bmemcore::BiblePluginMeta> getPluginList(const 
-            QString& path);
+    static QList<bmemcore::BiblePluginMeta> getPluginList(const QString& path);
     QString mDirectory;
-    std::vector<bmemcore::BiblePluginMeta> mFiles;
+    QList<bmemcore::BiblePluginMeta> mFiles;
     inline bool populateList();
     bool populateList(const QString& path);
 };

@@ -21,18 +21,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include <qapplication.h>
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qdir.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qmessagebox.h>
-#include <qiodevice.h>
-#include <qtabwidget.h>
-#include <qcombobox.h>
-#include <qcheckbox.h>
-#include <qpushbutton.h>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QIODevice>
 #include <QFileDialog>
 #include "ui/preferencesact.h"
 #include "core/settings.h"
@@ -40,8 +33,8 @@
 #include "core/bibleplugin.h"
 #include "core/bmemversion.h"
 #include "ui/plugininfoact.h"
-#include <vector>
-#include <iostream>
+//#include <vector>
+//#include <iostream>
 using namespace std;
 using namespace bmemcore;
 
@@ -58,10 +51,9 @@ PreferencesAct::PreferencesAct(QWidget *parent)
     if (!file.isEmpty() && QFile::exists(file))
     {
         int currIndex = 0;
-        for (std::vector<BiblePluginMeta>::iterator it = mFiles.begin();
-                it != mFiles.end(); ++it)
+        foreach(BiblePluginMeta item, mFiles)
         {
-            if (it->getMetaFileName() == file)
+            if (item.getMetaFileName() == file)
             {
                 mPluginListBox->setCurrentRow(currIndex);
                 break;
@@ -96,7 +88,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
         }
     }
     QString directory = Settings::getPluginDir();
-    std::vector<BiblePluginMeta> files;
+    QList<BiblePluginMeta> files;
     files = getPluginList(directory);
     bool worked = true;
     if (files.empty())
@@ -177,13 +169,12 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
         //location, try to find it now.
         if (!tryFor.isEmpty())
         {
-            for (std::vector<BiblePluginMeta>::const_iterator it = 
-                    files.begin(); it != files.end(); it++)
+            foreach(BiblePluginMeta item, files)
             {
-                if (it->getBaseName() == tryFor)
+                if (item.getBaseName() == tryFor)
                 {
-                    Settings::setPluginFile(it->getMetaFileName());
-                    return *it;
+                    Settings::setPluginFile(item.getMetaFileName());
+                    return item;
                 }
             }
         }
@@ -264,16 +255,14 @@ bool PreferencesAct::populateList(const QString& path)
     bool toReturn = false;
     if (!path.isEmpty())
     {
-        std::vector<BiblePluginMeta> files = getPluginList(path);
+        QList<BiblePluginMeta> files = getPluginList(path);
         if (!files.empty())
         {
             mFiles = files;
             mPluginListBox->clear();
-            std::vector<BiblePluginMeta>::iterator it3 = mFiles.begin();
-            while (it3 != mFiles.end())
+            foreach(BiblePluginMeta item, mFiles)
             {
-                mPluginListBox->addItem((*it3).getName());
-                it3++;
+                mPluginListBox->addItem(item.getName());
             }
             mPluginListBox->setCurrentRow(0);
             toReturn = true;
@@ -282,10 +271,10 @@ bool PreferencesAct::populateList(const QString& path)
     return toReturn;
 }
 
-std::vector<bmemcore::BiblePluginMeta> PreferencesAct::getPluginList(const
+QList<bmemcore::BiblePluginMeta> PreferencesAct::getPluginList(const
         QString& path)
 {
-    std::vector<BiblePluginMeta> files;
+    QList<BiblePluginMeta> files;
     if (!path.isEmpty())
     {
         //Includes the top directory and immediate subdirectories.

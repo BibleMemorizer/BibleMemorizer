@@ -23,8 +23,6 @@
 
 #include "ui/aboutact.h"
 #include "core/bmemversion.h"
-#include <qglobal.h>
-#include <qlabel.h>
 
 namespace bmemui
 {

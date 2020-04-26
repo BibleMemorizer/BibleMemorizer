@@ -22,7 +22,6 @@
  */
 
 #include "correctionword.h"
-#include "qstring.h"
 
 namespace bmemcore
 
@@ -255,7 +254,7 @@ bool CorrectionWord::getOtherError() const
     return mOtherError;
 }
 
-const std::vector<CorrectionWord::LetterState>&
+const QList<CorrectionWord::LetterState>&
 CorrectionWord::getLetterStates() const
 {
     return mLetterStates;

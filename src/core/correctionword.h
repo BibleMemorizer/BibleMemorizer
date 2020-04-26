@@ -23,8 +23,8 @@
 
 #pragma once
 
-#include <vector>
-#include <qstring.h>
+#include <QString>
+#include <QList>
 
 namespace bmemcore
 {
@@ -50,13 +50,13 @@ public:
     bool getCapError() const;
     bool getSpellingError() const;
     bool getOtherError() const;
-    const std::vector<LetterState>& getLetterStates() const;
+    const QList<LetterState>& getLetterStates() const;
     QString getWord() const;
     WordState getWordState() const;
 private:
     QString mWord;
     WordState mWordState;
-    std::vector<LetterState> mLetterStates;
+    QList<LetterState> mLetterStates;
     bool mPuncError;
     bool mCapError;
     bool mSpellingError;

@@ -24,8 +24,6 @@
 #include "ui/plugininfoact.h"
 #include "core/biblepluginmeta.h"
 using bmemcore::BiblePluginMeta;
-#include <qlabel.h>
-#include <qtabwidget.h>
 
 PluginInfoAct::PluginInfoAct(const BiblePluginMeta& meta, QWidget *parent)
 :QDialog(parent)
