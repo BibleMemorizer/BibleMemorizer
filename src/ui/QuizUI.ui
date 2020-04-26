@@ -72,7 +72,7 @@
         </widget>
       </item>
       <item row="2" column="0" rowspan="1" colspan="6">
-        <widget class="Q3TextEdit" name="mVerseEdit"/>
+        <widget class="QTextEdit" name="mVerseEdit"/>
       </item>
       <item row="3" column="0" rowspan="1" colspan="2">
         <widget class="QPushButton" name="mCheckButton">

@@ -33,16 +33,22 @@ namespace bmemui
 {
 
 QuizAct::QuizAct(Verse* verse, QWidget* parent, const char* name)
-:QuizUI(parent, name), mVerse(verse), mNumCorrect(0), mNumAttempts(0)
+:QWidget(parent), mVerse(verse), mNumCorrect(0), mNumAttempts(0)
 {
+    setupUi(this);
+    Q_UNUSED(name);
+
     mNextButton->hide();
     initVerse();
 }
 
 QuizAct::QuizAct(std::vector<Verse*> verses, QWidget* parent, const char* name)
-:QuizUI(parent, name), mVerse(verses[0]), mCurrentVerse(0), mNumCorrect(0),
+:QWidget(parent), mVerse(verses[0]), mCurrentVerse(0), mNumCorrect(0),
     mNumAttempts(0), mVerses(verses)
 {
+    setupUi(this);
+    Q_UNUSED(name);
+
     mCheckButton->hide();
     mCorrectButton->setText(tr("&Finished"));
     mClearButton->hide();
@@ -72,7 +78,7 @@ void QuizAct::verseChanged(const Verse&, Verse::ChangeType)
 void QuizAct::mCheckButton_clicked()
 {
     mNumAttempts++;
-    if (mVerse->checkText(mVerseEdit->text()))
+    if (mVerse->checkText(mVerseEdit->toPlainText()))
     {
         mResultLabel->setText(tr("Correct."));
         mNumCorrect++;
@@ -88,7 +94,7 @@ void QuizAct::mCorrectButton_clicked()
 {
     mCheckButton_clicked();
     std::list<bmemcore::CorrectionWord> corrections = mVerse->correctText(
-            mVerseEdit->text());
+            mVerseEdit->toPlainText());
     std::list<bmemcore::CorrectionWord>::iterator it = corrections.begin();
     QString html;
     while (it != corrections.end())
