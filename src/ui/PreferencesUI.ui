@@ -296,7 +296,7 @@
   </connection>
   <connection>
    <sender>mPluginListBox</sender>
-   <signal>highlighted(int)</signal>
+   <signal>currentRowChanged(int)</signal>
    <receiver>PreferencesUI</receiver>
    <slot>mPluginListBox_selected(int)</slot>
    <hints>
@@ -311,4 +311,10 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mDirButton_clicked()</slot>
+  <slot>mOKButton_clicked()</slot>
+  <slot>mInfoButton_clicked()</slot>
+  <slot>mPluginListBox_selected(int)</slot>
+ </slots>
 </ui>
