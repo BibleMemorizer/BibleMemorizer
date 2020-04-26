@@ -33,6 +33,7 @@
 #include <qcombobox.h>
 #include <qcheckbox.h>
 #include <qpushbutton.h>
+#include <QFileDialog>
 #include "ui/preferencesact.h"
 #include "core/settings.h"
 #include "core/biblepluginmeta.h"
@@ -48,8 +49,12 @@ namespace bmemui
 {
 
 PreferencesAct::PreferencesAct(QWidget *parent, const char *name)
-:PreferencesUI(parent, name), mDirectory(Settings::getPluginDir())
+:QDialog(parent), mDirectory(Settings::getPluginDir())
 {
+    setupUi(this);
+
+    setWindowTitle(name);
+
     populateList();
     QString file = Settings::getPluginFile();
     if (!file.isEmpty() && QFile::exists(file))
@@ -60,7 +65,7 @@ PreferencesAct::PreferencesAct(QWidget *parent, const char *name)
         {
             if (it->getMetaFileName() == file)
             {
-                mPluginListBox->setSelected(currIndex, true);
+                mPluginListBox->setCurrentRow(currIndex);
                 break;
             }
             currIndex++;
@@ -122,7 +127,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
         worked = attempt.exists();
         if (worked)
         {
-            directory = attempt.absPath();
+            directory = attempt.absolutePath();
             files = getPluginList(directory);
             worked = !files.empty();
         }
@@ -156,9 +161,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
                 if (response == QMessageBox::Ok)
                 {
                     directory = 
-                            BQFileDialog::getExistingDirectory(appDirPath,
-                            0, "Get Plugin Directory",
-                            tr("Choose Plugin Directory"));
+                            QFileDialog::getExistingDirectory(nullptr, tr("Choose Plugin Directory"), appDirPath);
                     files = getPluginList(directory);
                     worked = !files.empty();
                 }
@@ -216,11 +219,11 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
 
 BiblePluginMeta PreferencesAct::getMeta()
 {
-    return mFiles[mPluginListBox->index(mPluginListBox->selectedItem())];
+    return mFiles[mPluginListBox->currentRow()];
 }
 
 void PreferencesAct::selectPluginTab(){
-    mTabWidget->setCurrentPage(mTabWidget->indexOf(mPluginTab));
+    mTabWidget->setCurrentWidget(mPluginTab);
 }
 
 void PreferencesAct::hideCancel()
@@ -231,8 +234,7 @@ void PreferencesAct::hideCancel()
 void PreferencesAct::mOKButton_clicked()
 {
     Settings::setPluginDir(mDirectory);
-    Settings::setPluginFile(mFiles[mPluginListBox->index(
-            mPluginListBox->selectedItem())].getMetaFileName());
+    Settings::setPluginFile(mFiles[mPluginListBox->currentRow()].getMetaFileName());
     Settings::setOpenLastFile(mUseLastCheckBox->isChecked());
     Settings::setDefaultTranslation(mDefaultTranslationComboBox->currentText());
     Settings::setCountPuncErrors(mPuncErrorCheckBox->isChecked());
@@ -243,8 +245,7 @@ void PreferencesAct::mOKButton_clicked()
 
 void PreferencesAct::mDirButton_clicked()
 {
-    QString newDirectory = BQFileDialog::getExistingDirectory(mDirectory,
-        this, "Get Plugin Directory", tr("Choose Plugin Directory"));
+    QString newDirectory = QFileDialog::getExistingDirectory(this, tr("Choose Plugin Directory"), mDirectory);
     if (populateList(newDirectory))
     {
         mDirectory = newDirectory;
@@ -278,10 +279,10 @@ bool PreferencesAct::populateList(const QString& path)
             std::vector<BiblePluginMeta>::iterator it3 = mFiles.begin();
             while (it3 != mFiles.end())
             {
-                mPluginListBox->insertItem((*it3).getName());
+                mPluginListBox->addItem((*it3).getName());
                 it3++;
             }
-            mPluginListBox->setSelected(0, true);
+            mPluginListBox->setCurrentRow(0);
             toReturn = true;
         }
     }
@@ -302,7 +303,7 @@ std::vector<bmemcore::BiblePluginMeta> PreferencesAct::getPluginList(const
         //Add all the subdirectories.
         for (int i = 0; i < searchTopSubs.count(); i++)
         {
-            allSearches.push_back(QDir(searchTopSubs.absFilePath(
+            allSearches.push_back(QDir(searchTopSubs.absoluteFilePath(
                     searchTopSubs[i]), "*.plugin",
                     QDir::Name | QDir::IgnoreCase,
                     QDir::Files | QDir::Readable));
@@ -317,7 +318,7 @@ std::vector<bmemcore::BiblePluginMeta> PreferencesAct::getPluginList(const
             QStringList::iterator it2 = newEntries.begin();
             while (it2 != newEntries.end())
             {
-                BiblePluginMeta newMeta((*it1).absFilePath(*it2));
+                BiblePluginMeta newMeta((*it1).absoluteFilePath(*it2));
                 if (newMeta.getInterfaceVersion() ==
                         BMEM_SUPPORTED_PLUGIN_INTERFACE)
                 {
@@ -347,7 +348,7 @@ void PreferencesAct::mPluginListBox_selected(int index)
     QString oldTranslation = mDefaultTranslationComboBox->currentText();
     mDefaultTranslationComboBox->clear();
     if (ourPlugin.translationsAvailable()){
-        mDefaultTranslationComboBox->insertStringList(
+        mDefaultTranslationComboBox->addItems(
                 ourPlugin.getTranslations());
     }
     mDefaultTranslationComboBox->setCurrentText(oldTranslation);

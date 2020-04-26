@@ -35,7 +35,7 @@ namespace bmemcore
 namespace bmemui
 {
 
-class PreferencesAct: public PreferencesUI {
+class PreferencesAct: public QDialog, public Ui_PreferencesUI {
 Q_OBJECT
 public:
     PreferencesAct(QWidget *parent = 0, const char *name = 0);
