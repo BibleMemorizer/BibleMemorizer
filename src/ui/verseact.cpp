@@ -188,9 +188,9 @@ void VerseAct::removeCategory(const QString& oldCategory)
 {
     mStopRecursion = true;
     QList<QListWidgetItem*> items = mCategoryListBox->findItems(oldCategory, Qt::MatchCaseSensitive | Qt::MatchExactly);
-    foreach(QListWidgetItem* item, items)
+    foreach(QListWidgetItem *item, items)
     {
-        mCategoryListBox->removeItemWidget(item);
+        delete item;
     }
     mCategoryListBox->updateGeometry();
     mStopRecursion = false;

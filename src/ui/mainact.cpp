@@ -470,7 +470,7 @@ void MainAct::categoryRemoved(const QString& category)
     QList<QListWidgetItem*> items = mCategoryListBox->findItems(category, Qt::MatchExactly | Qt::MatchCaseSensitive);
     foreach(QListWidgetItem *item, items)
     {
-        mCategoryListBox->removeItemWidget(item);
+        delete item;
     }
 }
 
