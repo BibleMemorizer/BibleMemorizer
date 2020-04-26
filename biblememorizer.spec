@@ -5,7 +5,7 @@ Summary:        Tool to help memorizing Scripture
 
 Group:          Applications/Text
 License:        MIT/X11/GPL
-URL:            http://biblememorizer.sourceforge.net/
+URL:            https://biblememorizer.github.io/
 Source0:        biblememorizer-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 

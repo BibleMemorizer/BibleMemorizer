@@ -150,12 +150,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
                         "Cancel to abort.\n\n"
                         "If you are seeing this message on the startup of "
                         "BibleMemorizer,\n"
-                        "Cancelling will cause BibleMemorizer to exit.  If "
-                        "you do not\n"
-                        "know what to do, contact the person who gave you "
-                        "BibleMemorizer\n"
-                        "or post a message in the help forum at "
-                        "http://biblememorizer.sf.net"),
+                        "Cancelling will cause BibleMemorizer to exit."),
                         QMessageBox::Ok | QMessageBox::Default,
                         QMessageBox::Cancel | QMessageBox::Escape);
                 if (response == QMessageBox::Ok)

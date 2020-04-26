@@ -1,6 +1,6 @@
 BibleMemorizer is a program to help with memorizing scripture.
 
-See http://biblememorizer.sourceforge.net
+See https://biblememorizer.github.io/
 
 Please see INSTALL for installation instructions, they are slightly
 different from the standard autoconf/automake instructions used for most
