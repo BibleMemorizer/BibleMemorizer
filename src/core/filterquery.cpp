@@ -65,8 +65,8 @@ bool FilterQuery::valid()
 
 SearchFilter* FilterQuery::constructTree(const QString& expression){
     std::stack<SearchFilter*> stack;
-    QString currExpr = expression.stripWhiteSpace();
-    QString currExprLower = currExpr.lower();
+    QString currExpr = expression.trimmed();
+    QString currExprLower = currExpr.toLower();
     while (currExpr.length() > 0){
         SearchFilter* currToken = 0;
         int newIndex = 0;
@@ -201,7 +201,7 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
                 delete ourAtom;
                 return new FilterInvalid();
             }
-            currExprLower = currExprLower.mid(newIndex).stripWhiteSpace();
+            currExprLower = currExprLower.mid(newIndex).trimmed();
             if (currExprLower.startsWith("contains ")){
                 ourAtom->setSearch(FilterSearchAtom::SEARCH_CONTAINS);
                 newIndex += 9;
@@ -234,7 +234,7 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
                 clearStack(stack, currToken);
                 return new FilterInvalid();
             }
-            currExpr = currExpr.mid(newIndex).stripWhiteSpace();
+            currExpr = currExpr.mid(newIndex).trimmed();
             QString desiredText = getQuote(currExpr, &newIndex);
             if (newIndex == -1){
                 clearStack(stack, currToken);
@@ -266,8 +266,8 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
         else{
             stack.push(currToken);
         }
-        currExpr = currExpr.mid(newIndex).stripWhiteSpace();
-        currExprLower = currExpr.lower();
+        currExpr = currExpr.mid(newIndex).trimmed();
+        currExprLower = currExpr.toLower();
     }
     if (stack.empty()){
         return new FilterInvalid();
