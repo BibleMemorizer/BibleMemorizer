@@ -31,10 +31,10 @@ class QWidget;
 namespace bmemui
 {
 
-class AboutAct : public AboutUI
+class AboutAct : public QDialog, public Ui_AboutUI
 {
 public:
-    AboutAct(QWidget* parent = 0, const char * name = 0, bool modal = FALSE);
+    AboutAct(QWidget* parent = 0, const char * name = 0, bool modal = false);
 };
 
 }

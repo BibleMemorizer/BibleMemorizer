@@ -30,8 +30,13 @@ namespace bmemui
 {
 
 AboutAct::AboutAct(QWidget *parent, const char * name, bool modal)
-:AboutUI(parent, name, modal)
+: QDialog(parent)
 {
+    setupUi(this);
+
+    setWindowTitle(name);
+    setModal(modal);
+
     mDescLabel->setWordWrap(true);
     mitLabel->setWordWrap(true);
     gplLabel->setWordWrap(true);
