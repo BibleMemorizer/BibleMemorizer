@@ -110,13 +110,11 @@ static const unsigned char icon_data[] = {
     0x60, 0x82
 };
 
-MainAct::MainAct(QWidget *parent, const char *name)
+MainAct::MainAct(QWidget *parent)
 :QMainWindow(parent), currWidget(NULL), mVerses(new VerseCollection()),
         mVerseSelection(new VerseSelectAct(mNavFrame, false, mVerses))
 {
     setupUi(this);
-
-    setWindowTitle(name);
 
     mCategoryNoticeLabel->setWordWrap(true);
 #ifndef Q_OS_MAC

@@ -32,22 +32,20 @@ using bmemcore::CorrectionWord;
 namespace bmemui
 {
 
-QuizAct::QuizAct(Verse* verse, QWidget* parent, const char* name)
+QuizAct::QuizAct(Verse* verse, QWidget* parent)
 :QWidget(parent), mVerse(verse), mNumCorrect(0), mNumAttempts(0)
 {
     setupUi(this);
-    Q_UNUSED(name);
 
     mNextButton->hide();
     initVerse();
 }
 
-QuizAct::QuizAct(std::vector<Verse*> verses, QWidget* parent, const char* name)
+QuizAct::QuizAct(std::vector<Verse*> verses, QWidget* parent)
 :QWidget(parent), mVerse(verses[0]), mCurrentVerse(0), mNumCorrect(0),
     mNumAttempts(0), mVerses(verses)
 {
     setupUi(this);
-    Q_UNUSED(name);
 
     mCheckButton->hide();
     mCorrectButton->setText(tr("&Finished"));

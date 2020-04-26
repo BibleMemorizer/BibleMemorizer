@@ -48,12 +48,10 @@ using namespace bmemcore;
 namespace bmemui
 {
 
-PreferencesAct::PreferencesAct(QWidget *parent, const char *name)
+PreferencesAct::PreferencesAct(QWidget *parent)
 :QDialog(parent), mDirectory(Settings::getPluginDir())
 {
     setupUi(this);
-
-    setWindowTitle(name);
 
     populateList();
     QString file = Settings::getPluginFile();

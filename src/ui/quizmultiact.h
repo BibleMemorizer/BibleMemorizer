@@ -46,7 +46,7 @@ public:
     };
     QuizMultiAct(std::vector<bmemcore::Verse*> verses,
             QuizMultiAct::QuizMode mode,
-            QWidget *parent = 0, const char* name = 0);
+            QWidget *parent = 0);
 public slots:
     virtual void finished(int numCorrect, int numTotal);
     virtual void nextVerse(int currVerse, int total);

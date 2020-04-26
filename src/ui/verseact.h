@@ -51,7 +51,7 @@ public:
     VerseAct(bmemcore::Verse *verse, bmemcore::BiblePlugin *plugin,
             const QStringList &categories, PageType whatPage,
             QTabWidget &tabParent, bmemcore::VerseCollection *coll,
-            QWidget *parent = 0, const char *name = 0);
+            QWidget *parent = 0);
     void setPlugin(bmemcore::BiblePlugin *plugin);
     void choosePage(PageType);
     ~VerseAct();

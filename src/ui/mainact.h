@@ -49,7 +49,7 @@ class MainAct: public QMainWindow, public Ui_MainUI
 {
     Q_OBJECT
 public:
-    MainAct(QWidget *parent = 0, const char *name = 0);
+    MainAct(QWidget *parent = 0);
     virtual bool eventFilter(QObject* watched, QEvent* e);
     virtual ~MainAct();
 public slots:

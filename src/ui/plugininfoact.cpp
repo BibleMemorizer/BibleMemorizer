@@ -27,13 +27,10 @@ using bmemcore::BiblePluginMeta;
 #include <qlabel.h>
 #include <qtabwidget.h>
 
-PluginInfoAct::PluginInfoAct(const BiblePluginMeta& meta, QWidget *parent,
-        const char *name)
+PluginInfoAct::PluginInfoAct(const BiblePluginMeta& meta, QWidget *parent)
 :QDialog(parent)
 {
     setupUi(this);
-
-    setWindowTitle(name);
 
     mNameLabel->setText(QString(meta.getName() + " " +
             meta.getVersion()).simplified());

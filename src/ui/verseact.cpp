@@ -41,12 +41,11 @@ namespace bmemui
 VerseAct::VerseAct(Verse *verse, BiblePlugin *plugin,
         const QStringList &categories, PageType whatPage,
         QTabWidget &tabParent, VerseCollection *coll,
-        QWidget *parent, const char *name)
+        QWidget *parent)
 :QWidget(parent), mVerse(verse), mTabWidget(tabParent),
         mWatcherDead(false)
 {
     setupUi(this);
-    Q_UNUSED(name);
 
     mQuizPage = new QuizAct(mVerse);
     mWidgetStack->addWidget(mQuizPage);

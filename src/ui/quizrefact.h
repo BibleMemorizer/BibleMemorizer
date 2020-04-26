@@ -37,8 +37,7 @@ class QuizRefAct: public QWidget, public Ui_QuizRefUI
 {
     Q_OBJECT
 public:
-    QuizRefAct(std::vector<Verse*> verses, QWidget* parent = 0,
-            const char *name = 0);
+    QuizRefAct(std::vector<Verse*> verses, QWidget* parent = 0);
 public slots:
     virtual void mFinishedButton_clicked();
     virtual void mNextButton_clicked();

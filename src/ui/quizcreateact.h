@@ -43,7 +43,7 @@ Q_OBJECT
 public:
     QuizCreateAct(bmemcore::VerseCollection* coll,
             QuizMultiAct::QuizMode mMode,
-            QWidget *parent = 0, const char *name = 0);
+            QWidget *parent = 0);
     std::vector<bmemcore::Verse*> getVerses();
     QuizMultiAct::QuizMode getMode();
     virtual ~QuizCreateAct();

@@ -37,7 +37,7 @@ namespace bmemui
 class PreferencesAct: public QDialog, public Ui_PreferencesUI {
 Q_OBJECT
 public:
-    PreferencesAct(QWidget *parent = 0, const char *name = 0);
+    PreferencesAct(QWidget *parent = 0);
     static bmemcore::BiblePluginMeta getMetaStatic(bool &success);
     bmemcore::BiblePluginMeta getMeta();
     void selectPluginTab();

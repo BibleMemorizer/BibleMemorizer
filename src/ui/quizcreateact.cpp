@@ -38,14 +38,12 @@ namespace bmemui
 {
 
 QuizCreateAct::QuizCreateAct(VerseCollection* coll,
-        QuizMultiAct::QuizMode mode, QWidget *parent, const char * name)
+        QuizMultiAct::QuizMode mode, QWidget *parent)
 :QDialog(parent), mLeft(new VerseSelectAct(this, true, coll)),
         mRight(new VerseSelectAct(this, true, coll, &mFilter)), mVerses(coll),
         mMode(mode)
 {
     setupUi(this);
-
-    setWindowTitle(name);
 
     QVBoxLayout *leftLayout = new QVBoxLayout;
     leftLayout->addWidget((QWidget*)mLeft);

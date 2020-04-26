@@ -34,8 +34,7 @@
 namespace bmemui
 {
 
-QuizRefAct::QuizRefAct(std::vector<Verse*> verses, QWidget* parent,
-        const char *name)
+QuizRefAct::QuizRefAct(std::vector<Verse*> verses, QWidget* parent)
 :QWidget(parent), mVerse(verses[0]), mVerses(verses), mCurrentVerse(0),
         mNumCorrect(0), mNumAttempts(0)
 {

@@ -37,9 +37,8 @@ class QuizAct: public QWidget, public Ui_QuizUI
 {
     Q_OBJECT
 public:
-    QuizAct(bmemcore::Verse* verse, QWidget* parent = 0, const char *name = 0);
-    QuizAct(std::vector<Verse*> verses, QWidget* parent = 0,
-            const char *name = 0);
+    QuizAct(bmemcore::Verse* verse, QWidget* parent = 0);
+    QuizAct(std::vector<Verse*> verses, QWidget* parent = 0);
 public slots:
     virtual void mCheckButton_clicked();
     virtual void mCorrectButton_clicked();

@@ -32,5 +32,5 @@ namespace bmemcore
 class PluginInfoAct: public QDialog, public Ui_PluginInfoUI {
 Q_OBJECT
 public:
-    PluginInfoAct(const bmemcore::BiblePluginMeta& meta, QWidget *parent = 0, const char *name = 0);
+    PluginInfoAct(const bmemcore::BiblePluginMeta& meta, QWidget *parent = 0);
 };

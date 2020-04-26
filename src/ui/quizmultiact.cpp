@@ -36,7 +36,7 @@ namespace bmemui
 {
 
 QuizMultiAct::QuizMultiAct(std::vector<Verse*> verses, QuizMode mode, QWidget*
-    parent, const char* name)
+    parent)
 :QDialog(parent), mStatusLabel(new QLabel(this))
 {
     if (mode == QuizMultiAct::MODE_TEXT)
