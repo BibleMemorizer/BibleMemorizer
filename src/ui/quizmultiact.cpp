@@ -37,17 +37,17 @@ namespace bmemui
 
 QuizMultiAct::QuizMultiAct(std::vector<Verse*> verses, QuizMode mode, QWidget*
     parent, const char* name)
-:mStatusLabel(new QLabel(this))
+:QDialog(parent), mStatusLabel(new QLabel(this))
 {
     if (mode == QuizMultiAct::MODE_TEXT)
     {
         mQuizWidget = new QuizAct(verses, this);
-        setCaption(tr("Text Quiz - BibleMemorizer"));
+        setWindowTitle(tr("Text Quiz - BibleMemorizer"));
     }
     else if (mode == QuizMultiAct::MODE_REFERENCE)
     {
         mQuizWidget = new QuizRefAct(verses, this);
-        setCaption(tr("Reference Quiz - BibleMemorizer"));
+        setWindowTitle(tr("Reference Quiz - BibleMemorizer"));
     }
     mQuizWidget->setMinimumSize(400,250);
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
