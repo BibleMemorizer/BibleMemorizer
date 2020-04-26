@@ -28,13 +28,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <qapplication.h>
+#include <QApplication>
 #include "ui/mainact.h"
 using namespace bmemui;
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    QCoreApplication::setOrganizationName("BibleMemorizer");
+    QCoreApplication::setOrganizationDomain("biblememorizer.github.io");
+    QCoreApplication::setApplicationName("BibleMemorizer");
     app.setQuitOnLastWindowClosed(false);
     //Seed random number generator for quiz randomization.
     srand(unsigned(time(NULL)));

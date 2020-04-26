@@ -32,122 +32,115 @@ namespace bmemcore
 QSettings& Settings::qSettings()
 {
     static QSettings settings;
-    static bool needsInitializing = true;
-    if (needsInitializing)
-    {
-        settings.setPath("biblememorizer.sf.net", "BibleMemorizer",
-                QSettings::User);
-        needsInitializing = false;
-    }
     return settings;
 }
 
 void Settings::setPluginDir(const QString& dir)
 {
-    qSettings().writeEntry("/biblememorizer/plugin/directory",
-            QDir::cleanDirPath(dir));
+    qSettings().setValue("/plugin/directory",
+            QDir::cleanPath(dir));
 }
 
 QString Settings::getPluginDir()
 {
-    return qSettings().readEntry("/biblememorizer/plugin/directory", "");
+    return qSettings().value("/plugin/directory", "").toString();
 }
 
 void Settings::setPluginFile(const QString& file)
 {
-    qSettings().writeEntry("/biblememorizer/plugin/file",
-            QDir::cleanDirPath(file));
+    qSettings().setValue("/plugin/file",
+            QDir::cleanPath(file));
 }
 
 QString Settings::getPluginFile()
 {
-    return qSettings().readEntry("/biblememorizer/plugin/file", "");
+    return qSettings().value("/plugin/file", "").toString();
 }
 
 void Settings::setLastFile(const QString& file)
 {
-    qSettings().writeEntry("/biblememorizer/session/file",
-            QDir::cleanDirPath(file));
+    qSettings().setValue("/session/file",
+            QDir::cleanPath(file));
 }
 
 QString Settings::getLastFile()
 {
-    return qSettings().readEntry("/biblememorizer/session/file", "");
+    return qSettings().value("/session/file", "").toString();
 }
 
 void Settings::setWebBrowser(const QString& browser)
 {
-    qSettings().writeEntry("/biblememorizer/help/browser",
-            QDir::cleanDirPath(browser));
+    qSettings().setValue("/help/browser",
+            QDir::cleanPath(browser));
 }
 
 QString Settings::getWebBrowser()
 {
-    return qSettings().readEntry("/biblememorizer/help/browser", "");
+    return qSettings().value("/help/browser", "").toString();
 }
 
 void Settings::setHelpDir(const QString& dir)
 {
-    qSettings().writeEntry("/biblememorizer/help/directory",
-            QDir::cleanDirPath(dir));
+    qSettings().setValue("/help/directory",
+            QDir::cleanPath(dir));
 }
 
 QString Settings::getHelpDir()
 {
-    return qSettings().readEntry("/biblememorizer/help/directory", "");
+    return qSettings().value("/help/directory", "").toString();
 }
 
 void Settings::setDefaultTranslation(const QString& translation)
 {
-    qSettings().writeEntry("/biblememorizer/general/default_translation",
+    qSettings().setValue("/general/default_translation",
             translation);
 }
 
 QString Settings::getDefaultTranslation()
 {
-    return qSettings().readEntry("/biblememorizer/general/default_translation",
-            "");
+    return qSettings().value("/general/default_translation",
+            "").toString();
 }
 
 void Settings::setOpenLastFile(bool use)
 {
-    qSettings().writeEntry("/biblememorizer/session/openlast", use);
+    qSettings().setValue("/session/openlast", use);
 }
 
 bool Settings::getOpenLastFile()
 {
-    return qSettings().readBoolEntry("/biblememorizer/session/openlast", true);
+    return qSettings().value("/session/openlast", true).toBool();
 }
 
 void Settings::setCountPuncErrors(bool count)
 {
-    qSettings().writeEntry("/biblememorizer/quiz/puncerror", count);
+    qSettings().setValue("/quiz/puncerror", count);
 }
 
 bool Settings::getCountPuncErrors()
 {
-    return qSettings().readBoolEntry("/biblememorizer/quiz/puncerror", false);
+    return qSettings().value("/quiz/puncerror", false).toBool();
 }
 
 void Settings::setCountCapErrors(bool count)
 {
-    qSettings().writeEntry("/biblememorizer/quiz/caperror", count);
+    qSettings().setValue("/quiz/caperror", count);
 }
 
 bool Settings::getCountCapErrors()
 {
-    return qSettings().readBoolEntry("/biblememorizer/quiz/caperror", false);
+    return qSettings().value("/quiz/caperror", false).toBool();
 }
 
 void Settings::setCountSpellingErrors(bool count)
 {
-    qSettings().writeEntry("/biblememorizer/quiz/spellingerror", count);
+    qSettings().setValue("/quiz/spellingerror", count);
 }
 
 bool Settings::getCountSpellingErrors()
 {
-    return qSettings().readBoolEntry("/biblememorizer/quiz/spellingerror",
-            false);
+    return qSettings().value("/quiz/spellingerror",
+            false).toBool();
 }
 
 }
