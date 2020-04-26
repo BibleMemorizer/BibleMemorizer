@@ -24,7 +24,6 @@
 #include "ui/verseact.h"
 #include "core/verse.h"
 #include "core/bibleplugin.h"
-#include "qt_types.h"
 #include "ui/quizact.h"
 #include <qcombobox.h>
 #include <qstring.h>

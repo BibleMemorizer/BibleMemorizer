@@ -29,7 +29,6 @@
 #include "ui/verseact.h"
 #include "ui/verseselectact.h"
 #include "ui/quizmultiact.h"
-#include "qt_types.h"
 #include <qevent.h>
 #include <qstringlist.h>
 #include <list>

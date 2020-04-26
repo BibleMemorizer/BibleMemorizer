@@ -22,7 +22,6 @@
  */
 
 #include "core/biblepluginmeta.h"
-#include "qt_types.h"
 #include <qstring.h>
 #include <qfile.h>
 #include <qdir.h>

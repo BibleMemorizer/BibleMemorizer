@@ -25,7 +25,6 @@
 #include "core/verse.h"
 #include "core/versecollection.h"
 #include "core/filterquery.h"
-#include "qt_types.h"
 #include <list>
 #include <map>
 #include <utility>

@@ -23,7 +23,6 @@
 
 #include "ui/plugininfoact.h"
 #include "core/biblepluginmeta.h"
-#include "qt_types.h"
 using bmemcore::BiblePluginMeta;
 #include <qlabel.h>
 #include <qtabwidget.h>

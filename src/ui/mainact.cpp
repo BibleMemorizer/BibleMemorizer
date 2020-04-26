@@ -33,7 +33,6 @@
 #include "ui/quizcreateact.h"
 #include "core/bibleplugin.h"
 #include "core/biblepluginmeta.h"
-#include "qt_types.h"
 #include "core/settings.h"
 #include <qsplitter.h>
 #include <qpushbutton.h>

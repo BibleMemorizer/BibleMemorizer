@@ -33,7 +33,6 @@
 #include <qcombobox.h>
 #include <qcheckbox.h>
 #include <qpushbutton.h>
-#include "qt_types.h"
 #include "ui/preferencesact.h"
 #include "core/settings.h"
 #include "core/biblepluginmeta.h"

@@ -23,7 +23,6 @@
 
 #include "ui/quizact.h"
 #include "core/verse.h"
-#include "qt_types.h"
 #include <qlabel.h>
 #include <qpushbutton.h>
 

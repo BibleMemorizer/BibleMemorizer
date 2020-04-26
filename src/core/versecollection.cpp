@@ -23,7 +23,6 @@
 
 #include "core/versecollection.h"
 #include "core/verse.h"
-#include "qt_types.h"
 #include "core/bmemversion.h"
 #include <qfile.h>
 #include <qstringlist.h>

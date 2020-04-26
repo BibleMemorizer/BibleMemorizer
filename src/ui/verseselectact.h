@@ -24,7 +24,6 @@
 #ifndef BMEMUIVERSESELECTACT_H
 #define BMEMUIVERSESELECTACT_H
 
-#include "qt_types.h"
 #include "VerseSelectUI.h"
 #include "core/verse.h"
 #include <list>
