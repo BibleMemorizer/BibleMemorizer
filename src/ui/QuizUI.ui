@@ -195,4 +195,10 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mCheckButton_clicked()</slot>
+  <slot>mCorrectButton_clicked()</slot>
+  <slot>mClearButton_clicked()</slot>
+  <slot>mNextButton_clicked()</slot>
+ </slots>
 </ui>
