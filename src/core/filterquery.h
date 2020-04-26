@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREFILTERQUERY_H
-#define BMEMCOREFILTERQUERY_H
+#pragma once
 
 #include "core/searchfilter.h"
 #include <qstring.h>
@@ -57,4 +56,3 @@ protected:
 };
 
 }
-#endif

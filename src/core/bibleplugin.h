@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREBIBLEPLUGIN_H
-#define BMEMCOREBIBLEPLUGIN_H
+#pragma once
+
 #include <qlibrary.h>
 #include "core/ubook.h"
 #include "core/biblepluginmeta.h"
@@ -170,5 +170,3 @@ protected:
 };
 
 }
-
-#endif

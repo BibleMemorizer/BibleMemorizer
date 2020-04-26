@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREFILTERTESTAMENT_H
-#define BMEMCOREFILTERTESTAMENT_H
+#pragma once
 
 #include "core/searchfilter.h"
 #include <qstring.h>
@@ -49,5 +48,3 @@ private:
 };
 
 }
-
-#endif

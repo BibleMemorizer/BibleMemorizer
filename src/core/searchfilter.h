@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCORESEARCHFILTER_H
-#define BMEMCORESEARCHFILTER_H
+#pragma once
 
 #include "qobject.h"
 
@@ -43,4 +42,3 @@ public:
 };
 
 }
-#endif

@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIQUIZCREATEACT_H
-#define BMEMUIQUIZCREATEACT_H
+#pragma once
 
 #include "ui_QuizCreateUI.h"
 #include "core/filterlist.h"
@@ -63,6 +62,3 @@ protected:
 };
 
 }
-
-#endif
-

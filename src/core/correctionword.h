@@ -20,8 +20,8 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-#ifndef BMEMCORECORRECTION_WORD_H
-#define BMEMCORECORRECTION_WORD_H
+
+#pragma once
 
 #include <vector>
 #include <qstring.h>
@@ -64,5 +64,3 @@ private:
 };
 
 }
-
-#endif

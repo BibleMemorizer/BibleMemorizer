@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCORESETTINGS_H
-#define BMEMCORESETTINGS_H
+#pragma once
 
 class QSettings;
 class QString;
@@ -119,4 +118,3 @@ protected:
     static QSettings& qSettings();
 };
 }
-#endif

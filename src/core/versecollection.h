@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREVERSECOLLECTION_H
-#define BMEMCOREVERSECOLLECTION_H
+#pragma once
+
 #include <list>
 #include "core/verse.h"
 #include <qstring.h>
@@ -67,5 +67,3 @@ private:
 };
 
 }
-
-#endif

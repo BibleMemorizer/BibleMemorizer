@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIVERSEACT_H
-#define BMEMUIVERSEACT_H
+#pragma once
+
 class QTabWidget;
 #include "ui_VerseUI.h"
 #include <qstringlist.h>
@@ -82,5 +82,3 @@ private:
 };
 
 }
-
-#endif

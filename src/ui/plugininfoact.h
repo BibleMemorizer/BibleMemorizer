@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIPLUGININFOACT_H
-#define BMEMUIPLUGININFOACT_H
+#pragma once
 
 #include "ui_PluginInfoUI.h"
 namespace bmemcore
@@ -35,5 +34,3 @@ Q_OBJECT
 public:
     PluginInfoAct(const bmemcore::BiblePluginMeta& meta, QWidget *parent = 0, const char *name = 0);
 };
-
-#endif

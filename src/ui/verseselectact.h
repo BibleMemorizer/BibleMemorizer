@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIVERSESELECTACT_H
-#define BMEMUIVERSESELECTACT_H
+#pragma once
 
 #include "ui_VerseSelectUI.h"
 #include "core/verse.h"
@@ -75,6 +74,3 @@ protected:
 };
 
 }
-
-#endif
-

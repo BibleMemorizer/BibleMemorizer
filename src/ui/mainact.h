@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIMAINACT_H
-#define BMEMUIMAINACT_H
+#pragma once
 
 #include "ui_MainUI.h"
 #include "core/versecollection.h"
@@ -100,5 +99,3 @@ private:
 };
 
 }
-
-#endif

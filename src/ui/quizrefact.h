@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIQUIZREFACT_H
-#define BMEMUIQUIZREFACT_H
+#pragma once
 
 #include "ui_QuizRefUI.h"
 #include "core/verse.h"
@@ -57,5 +56,3 @@ protected:
 };
 
 }
-
-#endif

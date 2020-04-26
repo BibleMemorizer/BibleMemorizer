@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREFILTEROR_H
-#define BMEMCOREFILTEROR_H
+#pragma once
 
 #include "core/searchfilter.h"
 
@@ -53,4 +52,3 @@ protected:
 };
 
 }
-#endif

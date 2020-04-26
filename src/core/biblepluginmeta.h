@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREBIBLEPLUGINMETA_H
-#define BMEMCOREBIBLEPLUGINMETA_H
+#pragma once
+
 #include <qstring.h>
 #include <qobject.h>
 namespace bmemcore
@@ -128,5 +128,3 @@ private:
 };
 
 }
-
-#endif

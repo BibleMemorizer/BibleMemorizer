@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREVERSE_H
-#define BMEMCOREVERSE_H
+#pragma once
+
 class QDomElement;
 class QDomDocument;
 #include <qstring.h>
@@ -118,5 +118,3 @@ private:
 };
 
 }
-
-#endif

@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIPREFERENCESACT_H
-#define BMEMUIPREFERNECESACT_H
+#pragma once
 
 #include "ui_PreferencesUI.h"
 #include <vector>
@@ -59,6 +58,3 @@ private:
 };
 
 }
-
-#endif
-

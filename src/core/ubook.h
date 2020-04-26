@@ -21,8 +21,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREUBOOK_H
-#define BMEMCOREUBOOK_H
+#pragma once
+
 namespace bmemcore{
 
 enum Testament{
@@ -36,4 +36,3 @@ typedef struct{
 } uBookType;
 
 }
-#endif

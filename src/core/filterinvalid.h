@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMCOREFILTERINVALID_H
-#define BMEMCOREFILTERINVALID_H
+#pragma once
 
 #include "core/searchfilter.h"
 
@@ -46,4 +45,3 @@ public:
 };
 
 }
-#endif

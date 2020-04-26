@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIABOUTACT_H
-#define BMEMUIABOUTACT_H
+#pragma once
 
 #include "ui_AboutUI.h"
 
@@ -38,5 +37,3 @@ public:
 };
 
 }
-
-#endif

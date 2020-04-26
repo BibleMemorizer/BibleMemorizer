@@ -21,8 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMEMUIQUIZMULTIACT_H
-#define BMEMUIQUIZMULTIACT_H
+#pragma once
 
 #include <vector>
 #include <qwidget.h>
@@ -57,5 +56,3 @@ protected:
 };
 
 }
-
-#endif
