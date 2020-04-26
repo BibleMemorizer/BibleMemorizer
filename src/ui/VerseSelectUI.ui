@@ -45,7 +45,7 @@
         </widget>
       </item>
       <item>
-        <widget class="Q3ListBox" name="mVerseListBox">
+        <widget class="QListWidget" name="mVerseListBox">
           <item>
             <property name="text">
               <string>New Item</string>
@@ -72,9 +72,9 @@
     </connection>
     <connection>
       <sender>mVerseListBox</sender>
-      <signal>doubleClicked(Q3ListBoxItem*)</signal>
+      <signal>doubleClicked(QListWidgetItem*)</signal>
       <receiver>VerseSelectUI</receiver>
-      <slot>mVerseListBox_doubleClicked(Q3ListBoxItem*)</slot>
+      <slot>mVerseListBox_doubleClicked(QListWidgetItem*)</slot>
     </connection>
     <connection>
       <sender>mVerseListBox</sender>

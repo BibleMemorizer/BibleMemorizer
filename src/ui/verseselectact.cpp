@@ -41,16 +41,18 @@ namespace bmemui{
 
 VerseSelectAct::VerseSelectAct(QWidget* parent, bool multiSelect,
     VerseCollection* coll, SearchFilter* requiredFilter)
-:VerseSelectUI(parent, "Verse Select"), mVerseCollection(coll),
+:QWidget(parent), mVerseCollection(coll),
         mSearchFilter(new FilterQuery("true")),
         mSearchQuery(new FilterQuery("true")),
         mRequiredFilterMode(false)
 {
+    setupUi(this);
+
     if (multiSelect){
-        mVerseListBox->setSelectionMode(BQListBox::Extended);
+        mVerseListBox->setSelectionMode(QAbstractItemView::ExtendedSelection);
     }
     else{
-        mVerseListBox->setSelectionMode(BQListBox::Single);
+        mVerseListBox->setSelectionMode(QAbstractItemView::SingleSelection);
     }
     mVerseListBox->clear();
     if (requiredFilter){
@@ -66,7 +68,7 @@ std::list<Verse*> VerseSelectAct::getSelectedVerses()
 {
     std::list<Verse*> toReturn;
     for (int i = 0; i < mVerseListBox->count(); i++){
-        BQListBoxItem* curr = mVerseListBox->item(i);
+        QListWidgetItem* curr = mVerseListBox->item(i);
         if (curr->isSelected()){
             toReturn.push_back(verses[curr]);
         }
@@ -76,12 +78,12 @@ std::list<Verse*> VerseSelectAct::getSelectedVerses()
 
 void VerseSelectAct::selectAll()
 {
-    mVerseListBox->selectAll(true);
+    mVerseListBox->selectAll();
 }
 
 void VerseSelectAct::selectNone()
 {
-    mVerseListBox->selectAll(false);
+    mVerseListBox->clearSelection();
 }
 
 Verse* VerseSelectAct::getSelectedVerse()
@@ -120,9 +122,9 @@ void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
         items[*it] = 0;
     }
     mFilterComboBox->clear();
-    mFilterComboBox->insertItem(tr("All Verses"), 0);
-    mFilterComboBox->insertItem(tr("From Search"), 1);
-    mFilterComboBox->insertStringList(mVerseCollection->getCategories(), 2);
+    mFilterComboBox->insertItem(0, tr("All Verses"));
+    mFilterComboBox->insertItem(1, tr("From Search"));
+    mFilterComboBox->insertItems(2, mVerseCollection->getCategories());
     recreateList();
 }
 
@@ -140,7 +142,7 @@ void VerseSelectAct::verseAdded(Verse* verse){
 void VerseSelectAct::mSearchButton_clicked()
 {
     bool ok;
-    QString newQuery = QInputDialog::getText(tr("New Query"),
+    QString newQuery = QInputDialog::getText(this, tr("New Query"),
                         tr("Enter a new search query:\n\n"
                         "Examples:\ntext contains \"Jesus Christ\"\n"
                         "(reference contains \"3:16\" or reference contains "
@@ -148,15 +150,14 @@ void VerseSelectAct::mSearchButton_clicked()
                         "in category \"Salvation\"\n"
                         "testament equals \"ot\"\n"
                         "not chapter equals \"3\""),
-                        QLineEdit::Normal, mSearchQuery->sourceString(), &ok,
-                        this);
+                        QLineEdit::Normal, mSearchQuery->sourceString(), &ok);
     if (ok)
     {
 		FilterQuery* theQuery = new FilterQuery(newQuery);
         if (theQuery->valid())
         {
             mSearchQuery = theQuery;
-            mFilterComboBox->setCurrentItem(1);
+            mFilterComboBox->setCurrentIndex(1);
             recreateList();
         }
         else
@@ -177,18 +178,18 @@ void VerseSelectAct::mFilterComboBox_activated(int item){
     }
 }
 
-void VerseSelectAct::mVerseListBox_doubleClicked(BQListBoxItem* selected){
+void VerseSelectAct::mVerseListBox_doubleClicked(QListWidgetItem* selected){
     emit verseActivated(verses[selected]);
 }
 
 void VerseSelectAct::categoryAdded(const QString& category){
-    mFilterComboBox->insertItem(category);
+    mFilterComboBox->addItem(category);
 }
 
 void VerseSelectAct::categoryRemoved(const QString& category){
     for (int i = 2; i < mFilterComboBox->count(); i++)
     {
-        if (mFilterComboBox->text(i) == category)
+        if (mFilterComboBox->itemText(i) == category)
         {
             mFilterComboBox->removeItem(i);
             break;
@@ -199,9 +200,9 @@ void VerseSelectAct::categoryRemoved(const QString& category){
 void VerseSelectAct::categoryRenamed(const QString& oldName, const QString& newName){
     for (int i = 2; i < mFilterComboBox->count(); i++)
     {
-        if (mFilterComboBox->text(i) == oldName)
+        if (mFilterComboBox->itemText(i) == oldName)
         {
-            mFilterComboBox->changeItem(newName, i);
+            mFilterComboBox->setItemText(i, newName);
         }
     }
 }
@@ -217,7 +218,7 @@ void VerseSelectAct::verseChanged(const Verse& verse, Verse::ChangeType changeTy
     }
     else{
         bool selected = false;
-        if (BQListBoxItem* listItem = items[verseRef]){
+        if (QListWidgetItem* listItem = items[verseRef]){
             selected = listItem->isSelected();
             verses.erase(listItem);
             items[verseRef] = 0;
@@ -225,7 +226,7 @@ void VerseSelectAct::verseChanged(const Verse& verse, Verse::ChangeType changeTy
         }
         if (mSearchFilter->allows(verse)){
             insert(verseRef);
-            mVerseListBox->setSelected(items[verseRef], selected);
+            items[verseRef]->setSelected(selected);
         }
         else{
             items[verseRef] = 0;
@@ -272,7 +273,7 @@ void VerseSelectAct::recreateList(){
 }
 
 void VerseSelectAct::insert(Verse* verse){
-    BQListBoxItem* newItem = new BQListBoxText(verse->getReference());
+    QListWidgetItem* newItem = new QListWidgetItem(verse->getReference());
     if (items[verse]){
         verses.erase(items[verse]);
         delete items[verse];
@@ -286,7 +287,7 @@ void VerseSelectAct::insert(Verse* verse){
             break;
         }
     }
-    mVerseListBox->insertItem(newItem, index);
+    mVerseListBox->insertItem(index, newItem);
 }
 
 void VerseSelectAct::mVerseListBox_selectionChanged(){

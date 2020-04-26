@@ -38,7 +38,7 @@ namespace bmemcore{
 namespace bmemui
 {
 using namespace bmemcore;
-class VerseSelectAct : public Ui_VerseSelectUI {
+class VerseSelectAct : public QWidget, public Ui_VerseSelectUI {
 Q_OBJECT
 public:
     VerseSelectAct(QWidget* parent, bool multiSelect, VerseCollection* coll,
@@ -49,7 +49,7 @@ public:
 public slots:
     void mSearchButton_clicked();
     void mFilterComboBox_activated(int item);
-    void mVerseListBox_doubleClicked(BQListBoxItem*);
+    void mVerseListBox_doubleClicked(QListWidgetItem*);
     void mVerseListBox_selectionChanged();
     void selectAll();
     void selectNone();
@@ -65,8 +65,8 @@ signals:
     void selectionChanged(bool verseSelected);
 protected:
     VerseCollection *mVerseCollection;
-    std::map<Verse*, BQListBoxItem*> items;
-    std::map<BQListBoxItem*, Verse*> verses;
+    std::map<Verse*, QListWidgetItem*> items;
+    std::map<QListWidgetItem*, Verse*> verses;
     FilterQuery* mSearchQuery;
     SearchFilter* mSearchFilter;
     bool mRequiredFilterMode;
