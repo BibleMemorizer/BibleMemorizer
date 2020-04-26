@@ -39,7 +39,7 @@ using namespace bmemcore;
 
 class QuizAct;
 
-class VerseAct: public Ui_VerseUI
+class VerseAct: public QWidget, public Ui_VerseUI
 {
     Q_OBJECT
 public:

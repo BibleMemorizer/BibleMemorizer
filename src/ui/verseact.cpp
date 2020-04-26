@@ -42,9 +42,12 @@ VerseAct::VerseAct(Verse *verse, BiblePlugin *plugin,
         const QStringList &categories, PageType whatPage,
         QTabWidget &tabParent, VerseCollection *coll,
         QWidget *parent, const char *name)
-:VerseUI(parent, name), mVerse(verse), mTabWidget(tabParent), 
+:QWidget(parent), mVerse(verse), mTabWidget(tabParent),
         mWatcherDead(false)
 {
+    setupUi(this);
+    Q_UNUSED(name);
+
     mQuizPage = new QuizAct(mVerse);
     mWidgetStack->addWidget(mQuizPage);
     //mVerse->addWatcher(this);
@@ -57,15 +60,15 @@ VerseAct::VerseAct(Verse *verse, BiblePlugin *plugin,
     connect((QObject*)coll, SIGNAL(categoryRenamed(const QString&,
             const QString&)),
             this, SLOT(renameCategory(const QString&, const QString&)));
-    mModeComboBox->insertItem(tr("View"),MODE_VIEW);
-    mModeComboBox->insertItem(tr("Edit"),MODE_EDIT);
-    mModeComboBox->insertItem(tr("Quiz"),MODE_QUIZ);
+    mModeComboBox->insertItem(MODE_VIEW, tr("View"));
+    mModeComboBox->insertItem(MODE_EDIT, tr("Edit"));
+    mModeComboBox->insertItem(MODE_QUIZ, tr("Quiz"));
     setPlugin(plugin);
     //using mStopRecursion to avoid triggering notifications
     //for other classes.
     mStopRecursion = true;
     mCategoryListBox->clear();
-    mCategoryListBox->insertStringList(categories);
+    mCategoryListBox->addItems(categories);
     choosePage(whatPage);
     updateReference();
     mChapterComboBox->setCurrentText(mVerse->getChapter());
@@ -78,8 +81,11 @@ VerseAct::VerseAct(Verse *verse, BiblePlugin *plugin,
     QStringList::const_iterator it = vCategories.begin();
     while (it != vCategories.end())
     {
-        mCategoryListBox->setSelected(mCategoryListBox->findItem(*it,
-                B_CaseSensitive | B_ExactMatch), true);
+        QList<QListWidgetItem*> items = mCategoryListBox->findItems(*it, Qt::MatchCaseSensitive | Qt::MatchExactly);
+        foreach(QListWidgetItem* item, items)
+        {
+            item->setSelected(true);
+        }
         it++;
     }
     mCategoriesLabel->setText(vCategories.join("; "));
@@ -139,8 +145,11 @@ void VerseAct::verseChanged(const Verse&, Verse::ChangeType whatChanged)
                 QStringList::const_iterator it = vCategories.begin();
                 while (it != vCategories.end())
                 {
-                    mCategoryListBox->setSelected(mCategoryListBox->findItem(
-                            *it, B_CaseSensitive | B_ExactMatch), true);
+                    QList<QListWidgetItem*> items = mCategoryListBox->findItems(*it, Qt::MatchCaseSensitive | Qt::MatchExactly);
+                    foreach(QListWidgetItem* item, items)
+                    {
+                        item->setSelected(true);
+                    }
                     it++;
                 }
                 mCategoriesLabel->setText(vCategories.join("; "));
@@ -157,7 +166,7 @@ void VerseAct::verseChanged(const Verse&, Verse::ChangeType whatChanged)
 void VerseAct::addCategory(const QString& newCategory)
 {
     mStopRecursion = true;
-    mCategoryListBox->insertItem(newCategory);
+    mCategoryListBox->addItem(newCategory);
     mCategoryListBox->updateGeometry();
     mStopRecursion = false;
 }
@@ -166,10 +175,11 @@ void VerseAct::renameCategory(const QString& oldCategory,
         const QString& newCategory)
 {
     mStopRecursion = true;
-    int index = mCategoryListBox->index(mCategoryListBox->findItem(
-            oldCategory, B_CaseSensitive | B_ExactMatch));
-    mCategoryListBox->removeItem(index);
-    mCategoryListBox->insertItem(newCategory, index);
+    QList<QListWidgetItem*> items = mCategoryListBox->findItems(oldCategory, Qt::MatchCaseSensitive | Qt::MatchExactly);
+    foreach(QListWidgetItem* item, items)
+    {
+        item->setText(newCategory);
+    }
     mCategoryListBox->updateGeometry();
     mStopRecursion = false;
 }
@@ -177,8 +187,11 @@ void VerseAct::renameCategory(const QString& oldCategory,
 void VerseAct::removeCategory(const QString& oldCategory)
 {
     mStopRecursion = true;
-    delete mCategoryListBox->findItem(oldCategory, 
-            B_CaseSensitive | B_ExactMatch);
+    QList<QListWidgetItem*> items = mCategoryListBox->findItems(oldCategory, Qt::MatchCaseSensitive | Qt::MatchExactly);
+    foreach(QListWidgetItem* item, items)
+    {
+        mCategoryListBox->removeItemWidget(item);
+    }
     mCategoryListBox->updateGeometry();
     mStopRecursion = false;
 }
@@ -207,7 +220,7 @@ void VerseAct::mBookComboBox_textChanged(const QString& newBook)
                 mVerse->getUBook());
         for (int i = 1; i <= numBooks; i++)
         {
-            mChapterComboBox->insertItem(QString::number(i));
+            mChapterComboBox->addItem(QString::number(i));
         }
         mChapterComboBox->setCurrentText(oldText);
         mStopRecursion = false;
@@ -263,7 +276,7 @@ void VerseAct::mTextEdit_textChanged()
     if (!mStopRecursion)
     {
         mStopRecursion = true;
-        mVerse->setText(mTextEdit->text());
+        mVerse->setText(mTextEdit->toPlainText());
         mTextViewEdit->setText(mVerse->getText());
         mStopRecursion = false;
     }
@@ -277,10 +290,9 @@ void VerseAct::mCategoriesListBox_selectionChanged()
     {
         mStopRecursion = true;
         QStringList newCategories;
-        for (int i = 0; i < mCategoryListBox->count(); i++)
+        foreach(QListWidgetItem *item, mCategoryListBox->selectedItems())
         {
-            if (mCategoryListBox->isSelected(i))
-                newCategories.append(mCategoryListBox->text(i));
+            newCategories.append(item->text());
         }
         mVerse->setCategories(newCategories);
         mCategoriesLabel->setText(newCategories.join("; "));
@@ -299,24 +311,24 @@ void VerseAct::choosePage(PageType index)
     switch (index)
     {
     case MODE_VIEW:
-        mWidgetStack->raiseWidget(mViewPage);
+        mWidgetStack->setCurrentWidget(mViewPage);
         break;
     case MODE_EDIT:
-        mWidgetStack->raiseWidget(mEditPage);
+        mWidgetStack->setCurrentWidget(mEditPage);
         break;
     case MODE_QUIZ:
-        mWidgetStack->raiseWidget(mQuizPage);
+        mWidgetStack->setCurrentWidget(mQuizPage);
         break;
     }
-    if (mModeComboBox->currentItem() != index)
+    if (mModeComboBox->currentIndex() != index)
     {
-        mModeComboBox->setCurrentItem(index);
+        mModeComboBox->setCurrentIndex(index);
     }
 }
 
 void VerseAct::closeMe(bool verseDying)
 {
-    mTabWidget.removePage(this);
+    mTabWidget.removeTab(mTabWidget.indexOf(this));
     if (!verseDying)
         disconnect(mVerse, 0, this, 0);
     mVerse = 0;
@@ -325,7 +337,7 @@ void VerseAct::closeMe(bool verseDying)
 
 void VerseAct::updateReference()
 {
-    mTabWidget.changeTab(this, mVerse->getReference());
+    mTabWidget.setTabText(mTabWidget.indexOf(this), mVerse->getReference());
     mReferenceLabel->setText(mVerse->getReference());
 }
 
@@ -334,10 +346,10 @@ void VerseAct::setPlugin(BiblePlugin* plugin)
     mStopRecursion = true;
     mPlugin = plugin;
     mTranslationComboBox->clear();
-    mTranslationComboBox->insertStringList(mPlugin->getTranslations());
+    mTranslationComboBox->addItems(mPlugin->getTranslations());
     mTranslationComboBox->setCurrentText(mVerse->getTranslation());
     mBookComboBox->clear();
-    mBookComboBox->insertStringList(mPlugin->getBooks(""));
+    mBookComboBox->addItems(mPlugin->getBooks(""));
     mBookComboBox->setCurrentText(mVerse->getBook());
     if (mPlugin->verseLoaderAvailable()){
         mVerseLoaderButton->setText(tr("Get From %1").arg(
