@@ -72,48 +72,48 @@ bool FilterSearchAtom::allows(const Verse& verse)
     switch (mSearch)
     {
     case SEARCH_CONTAINS:
-        if (actText.contains(mText, false))
+        if (actText.contains(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
         break;
     case SEARCH_NO_CONTAINS:
-        if (!actText.contains(mText, false))
+        if (!actText.contains(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
         break;
     case SEARCH_MATCHES:
-        if (actText.lower() == mText.lower())
+        if (actText.toLower() == mText.toLower())
             return true;
         else
             return false;
     case SEARCH_NO_MATCHES:
-        if (actText.lower() != mText.lower())
+        if (actText.toLower() != mText.toLower())
             return true;
         else
             return false;
         break;
     case SEARCH_STARTSWITH:
-        if (actText.startsWith(mText, false))
+        if (actText.startsWith(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
         break;
     case SEARCH_NO_STARTSWITH:
-        if (!actText.startsWith(mText, false))
+        if (!actText.startsWith(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
         break;
     case SEARCH_ENDSWITH:
-        if (actText.endsWith(mText, false))
+        if (actText.endsWith(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
         break;
     case SEARCH_NO_ENDSWITH:
-        if (!actText.endsWith(mText, false))
+        if (!actText.endsWith(mText, Qt::CaseInsensitive))
             return true;
         else
             return false;
