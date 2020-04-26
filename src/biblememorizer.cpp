@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     //Seed random number generator for quiz randomization.
     srand(unsigned(time(NULL)));
     MainAct mainui;
-    app.setMainWidget(&mainui);
+    //app.setMainWidget(&mainui);
     mainui.show();
     return app.exec();
 }
