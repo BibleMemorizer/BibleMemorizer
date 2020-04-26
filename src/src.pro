@@ -120,6 +120,5 @@ win32{
 }
 
 INSTALLS += target
-CONFIG += uic3
 QT += xml \
       widgets
