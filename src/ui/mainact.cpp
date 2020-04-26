@@ -34,27 +34,24 @@
 #include "core/bibleplugin.h"
 #include "core/biblepluginmeta.h"
 #include "core/settings.h"
-#include <qsplitter.h>
-#include <qpushbutton.h>
-#include <qtabwidget.h>
-#include <qapplication.h>
-#include <qmap.h>
-#include <qstringlist.h>
-#include <qcombobox.h>
-#include <qlineedit.h>
-#include <qmessagebox.h>
-#include <qinputdialog.h>
-#include <qdom.h>
-#include <qtextstream.h>
-#include <qclipboard.h>
-#include <qlayout.h>
-#include <qimage.h>
-#include <qsplitter.h>
-#include <qfiledialog.h>
-#include <list>
-#include <vector>
-#include <algorithm>
-#include <iostream>
+#include <QSplitter>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QApplication>
+#include <QMap>
+#include <QStringList>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QtXml>
+#include <QTextStream>
+#include <QClipboard>
+#include <QLayout>
+#include <QImage>
+#include <QSplitter>
+#include <QFileDialog>
+#include <QCloseEvent>
 using namespace bmemcore;
 namespace bmemui
 {
@@ -523,7 +520,7 @@ void MainAct::openVerse(Verse* verse, VerseAct::PageType pageType)
 {
     if (verse != 0)
     {
-        if (mVersePaneMap[verse] &&
+        if (mVersePaneMap.contains(verse) &&
                 (mTabWidget->indexOf(mVersePaneMap[verse]) != -1)){
             VerseAct* act = mVersePaneMap[verse];
             act->choosePage(pageType);

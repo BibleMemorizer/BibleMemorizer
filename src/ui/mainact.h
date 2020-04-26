@@ -28,10 +28,9 @@
 #include "ui/verseact.h"
 #include "ui/verseselectact.h"
 #include "ui/quizmultiact.h"
-#include <qevent.h>
-#include <qstringlist.h>
-#include <list>
-#include <map>
+#include <QEvent>
+#include <QStringList>
+#include <QMap>
 
 namespace bmemcore
 {
@@ -80,7 +79,7 @@ protected:
     QWidget* currWidget;
     bmemcore::VerseCollection *mVerses;
     VerseSelectAct* mVerseSelection;
-    std::map<bmemcore::Verse*,VerseAct*> mVersePaneMap;
+    QMap<bmemcore::Verse*,VerseAct*> mVersePaneMap;
     bmemcore::BiblePlugin *mPlugin;
     QString mCurrentFileName;
     QString mFileFilters;
