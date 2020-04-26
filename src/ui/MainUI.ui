@@ -4,7 +4,7 @@
   <comment></comment>
   <exportmacro></exportmacro>
   <class>MainUI</class>
-  <widget class="Q3MainWindow" name="MainUI">
+  <widget class="QMainWindow" name="MainUI">
     <property name="geometry">
       <rect>
         <x>0</x>
@@ -37,7 +37,7 @@
             <property name="childrenCollapsible">
               <bool>true</bool>
             </property>
-            <widget class="Q3Frame" name="mNavFrame">
+            <widget class="QFrame" name="mNavFrame">
               <property name="sizePolicy">
                 <sizepolicy>
                   <hsizetype>5</hsizetype>
@@ -196,7 +196,7 @@
                     </widget>
                   </item>
                   <item>
-                    <widget class="Q3ListBox" name="mCategoryListBox">
+                    <widget class="QListWidget" name="mCategoryListBox">
                       <item>
                         <property name="text">
                           <string>New Item</string>
@@ -289,9 +289,6 @@
       <addaction name="helpMenu"/>
     </widget>
     <action name="fileNewAction">
-      <property name="name">
-        <cstring>fileNewAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image0</iconset>
       </property>
@@ -306,9 +303,6 @@
       </property>
     </action>
     <action name="fileOpenAction">
-      <property name="name">
-        <cstring>fileOpenAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image1</iconset>
       </property>
@@ -323,9 +317,6 @@
       </property>
     </action>
     <action name="fileSaveAction">
-      <property name="name">
-        <cstring>fileSaveAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image2</iconset>
       </property>
@@ -340,9 +331,6 @@
       </property>
     </action>
     <action name="fileSaveAsAction">
-      <property name="name">
-        <cstring>fileSaveAsAction</cstring>
-      </property>
       <property name="iconText">
         <string>Save As</string>
       </property>
@@ -354,9 +342,6 @@
       </property>
     </action>
     <action name="filePrintAction">
-      <property name="name">
-        <cstring>filePrintAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image3</iconset>
       </property>
@@ -371,9 +356,6 @@
       </property>
     </action>
     <action name="fileExitAction">
-      <property name="name">
-        <cstring>fileExitAction</cstring>
-      </property>
       <property name="iconText">
         <string>Exit</string>
       </property>
@@ -385,9 +367,6 @@
       </property>
     </action>
     <action name="editUndoAction">
-      <property name="name">
-        <cstring>editUndoAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image4</iconset>
       </property>
@@ -402,9 +381,6 @@
       </property>
     </action>
     <action name="editRedoAction">
-      <property name="name">
-        <cstring>editRedoAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image5</iconset>
       </property>
@@ -419,9 +395,6 @@
       </property>
     </action>
     <action name="editCutAction">
-      <property name="name">
-        <cstring>editCutAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image6</iconset>
       </property>
@@ -436,9 +409,6 @@
       </property>
     </action>
     <action name="editCopyAction">
-      <property name="name">
-        <cstring>editCopyAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image7</iconset>
       </property>
@@ -453,9 +423,6 @@
       </property>
     </action>
     <action name="editPasteAction">
-      <property name="name">
-        <cstring>editPasteAction</cstring>
-      </property>
       <property name="icon">
         <iconset>image8</iconset>
       </property>
@@ -470,9 +437,6 @@
       </property>
     </action>
     <action name="helpContentsAction">
-      <property name="name">
-        <cstring>helpContentsAction</cstring>
-      </property>
       <property name="iconText">
         <string>Contents</string>
       </property>
@@ -487,9 +451,6 @@
       </property>
     </action>
     <action name="helpIndexAction">
-      <property name="name">
-        <cstring>helpIndexAction</cstring>
-      </property>
       <property name="iconText">
         <string>Index</string>
       </property>
@@ -504,9 +465,6 @@
       </property>
     </action>
     <action name="helpAboutAction">
-      <property name="name">
-        <cstring>helpAboutAction</cstring>
-      </property>
       <property name="iconText">
         <string>About</string>
       </property>
@@ -518,9 +476,6 @@
       </property>
     </action>
     <action name="preferencesSettingsAction">
-      <property name="name">
-        <cstring>preferencesSettingsAction</cstring>
-      </property>
       <property name="iconText">
         <string>Settings...</string>
       </property>
@@ -529,9 +484,6 @@
       </property>
     </action>
     <action name="quizTextAction">
-      <property name="name">
-        <cstring>quizTextAction</cstring>
-      </property>
       <property name="iconText">
         <string>Text Quiz</string>
       </property>
@@ -540,9 +492,6 @@
       </property>
     </action>
     <action name="quizReferenceAction">
-      <property name="name">
-        <cstring>quizReferenceAction</cstring>
-      </property>
       <property name="iconText">
         <string>Reference Quiz</string>
       </property>

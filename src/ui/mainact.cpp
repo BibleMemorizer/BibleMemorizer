@@ -50,6 +50,7 @@
 #include <qlayout.h>
 #include <qimage.h>
 #include <qsplitter.h>
+#include <qfiledialog.h>
 #include <list>
 #include <vector>
 #include <algorithm>
@@ -110,14 +111,18 @@ static const unsigned char icon_data[] = {
 };
 
 MainAct::MainAct(QWidget *parent, const char *name)
-:MainUI(parent, name), currWidget(NULL), mVerses(new VerseCollection()),
+:QMainWindow(parent), currWidget(NULL), mVerses(new VerseCollection()),
         mVerseSelection(new VerseSelectAct(mNavFrame, false, mVerses))
 {
+    setupUi(this);
+
+    setWindowTitle(name);
+
     mCategoryNoticeLabel->setWordWrap(true);
 #ifndef Q_OS_MAC
     QPixmap img;
     img.loadFromData( icon_data, sizeof( icon_data ), "PNG" );
-    setIcon(img);
+    setWindowIcon(img);
 #endif
     initVerseCollection();
     QVBoxLayout *newLayout = new QVBoxLayout(mNavFrame);
@@ -136,9 +141,9 @@ MainAct::MainAct(QWidget *parent, const char *name)
     mFileFilters = tr("Bible Verse Collection files (*.bvc)\n"
                       "All Files (*)");
     setCurrentFileName("");
-    mOpenForComboBox->insertItem(tr("View"),VerseAct::MODE_VIEW);
-    mOpenForComboBox->insertItem(tr("Edit"),VerseAct::MODE_EDIT);
-    mOpenForComboBox->insertItem(tr("Quiz"),VerseAct::MODE_QUIZ);
+    mOpenForComboBox->insertItem(VerseAct::MODE_VIEW, tr("View"));
+    mOpenForComboBox->insertItem(VerseAct::MODE_EDIT, tr("Edit"));
+    mOpenForComboBox->insertItem(VerseAct::MODE_QUIZ, tr("Quiz"));
 
     mMainSplitter->refresh();
     qApp->installEventFilter(this);
@@ -168,7 +173,7 @@ void MainAct::changeVerseCollection(VerseCollection* newCollection)
 void MainAct::initVerseCollection()
 {
     mCategoryListBox->clear();
-    mCategoryListBox->insertStringList(mVerses->getCategories());
+    mCategoryListBox->addItems(mVerses->getCategories());
     connect(mVerses, SIGNAL(categoryAdded(const QString&)), this,
             SLOT(categoryAdded(const QString&)));
     connect(mVerses, SIGNAL(categoryRenamed(const QString&, const QString&)),
@@ -212,7 +217,7 @@ void MainAct::setCurrentFileName(const QString &newFile)
     {
         shownName = tr("Untitled");
     }
-    setCaption(tr("BibleMemorizer") + " - " + shownName);
+    setWindowTitle(tr("BibleMemorizer") + " - " + shownName);
 }
 
 bool MainAct::promptSave()
@@ -259,10 +264,10 @@ bool MainAct::saveAs()
         QString passName = mCurrentFileName;
         if (passName == "")
             passName = ".";
-        fileName = BQFileDialog::getSaveFileName(passName, mFileFilters, this);
+        fileName = QFileDialog::getSaveFileName(this, QString(), passName, mFileFilters);
         if (fileName.isEmpty())
             return false;
-        if (!fileName.endsWith(".bvc", false)){
+        if (!fileName.endsWith(".bvc", Qt::CaseInsensitive)){
             fileName.append(".bvc");
         }
         if (QFile::exists(fileName)){
@@ -327,7 +332,7 @@ void MainAct::mOpenButton_clicked()
     if (verse != 0)
     {
         openVerse(verse, static_cast<VerseAct::PageType>
-                (mOpenForComboBox->currentItem()));
+                (mOpenForComboBox->currentIndex()));
     }
 }
 
@@ -341,8 +346,7 @@ void MainAct::fileOpenAction_activated()
 {
     if (promptSave())
     {
-        QString fileName = BQFileDialog::getOpenFileName(".", mFileFilters, 
-                this);
+        QString fileName = QFileDialog::getOpenFileName(this, QString(), ".", mFileFilters);
         if (!fileName.isNull())
         {
             openFile(fileName);
@@ -391,11 +395,11 @@ void MainAct::helpContentsAction_activated()
 void MainAct::mAddCategoryButton_clicked()
 {
     bool ok;
-    QString newCat = QInputDialog::getText(
+    QString newCat = QInputDialog::getText(this,
             tr("BibleMemorizer"), 
             tr("Enter the name of the new category:"),
-            QLineEdit::Normal, QString::null, &ok, this );
-    newCat = newCat.simplifyWhiteSpace();
+            QLineEdit::Normal, QString(), &ok);
+    newCat = newCat.simplified();
     if (ok && !newCat.isEmpty() && !mVerses->containsCategory(newCat)) 
     {
         mVerses->addCategory(newCat);
@@ -404,25 +408,26 @@ void MainAct::mAddCategoryButton_clicked()
     {
         QMessageBox::information(this, tr("BibleMemorizer"), 
                 tr("You have already created that category"));
-        mCategoryListBox->setSelected(mCategoryListBox->findItem(newCat,
-                B_CaseSensitive | B_ExactMatch), true);
+        mCategoryListBox->setCurrentItem(mCategoryListBox->findItems(newCat,
+                Qt::MatchCaseSensitive | Qt::MatchExactly).first());
     }
 }
 
 void MainAct::categoryAdded(const QString& category)
 {
-    mCategoryListBox->insertItem(category);
+    mCategoryListBox->addItem(category);
 }
 
 void MainAct::mRenameCategoryButton_clicked()
 {
     bool ok;
-    QString oldCat = mCategoryListBox->selectedItem()->text();
+    QString oldCat = mCategoryListBox->currentItem()->text();
     QString newCat = QInputDialog::getText(
+            this,
             tr("BibleMemorizer"), 
             tr("Enter the new name for this category:"),
-            QLineEdit::Normal, QString::null, &ok, this );
-    newCat = newCat.simplifyWhiteSpace();
+            QLineEdit::Normal, QString(), &ok);
+    newCat = newCat.simplified();
     if (ok && !newCat.isEmpty() && !mVerses->containsCategory(newCat) &
             !newCat.contains(';')) 
     {
@@ -432,8 +437,8 @@ void MainAct::mRenameCategoryButton_clicked()
     {
         QMessageBox::information(this, tr("BibleMemorizer"), 
                 tr("You have already created that category"));
-        mCategoryListBox->setSelected(mCategoryListBox->findItem(newCat, 
-                B_CaseSensitive | B_ExactMatch), true);
+        mCategoryListBox->setCurrentItem(mCategoryListBox->findItems(newCat, 
+                Qt::MatchCaseSensitive | Qt::MatchExactly).first());
     }
     else if (newCat.contains(';'))
     {
@@ -445,15 +450,13 @@ void MainAct::mRenameCategoryButton_clicked()
 
 void MainAct::categoryRenamed(const QString& oldName, const QString& newName)
 {
-    BQListBoxItem* item = mCategoryListBox->findItem(oldName, B_ExactMatch |
-                B_CaseSensitive);
-    int index = mCategoryListBox->index(item);
-    mCategoryListBox->changeItem(newName, index);
+    QList<QListWidgetItem*> items = mCategoryListBox->findItems(oldName, Qt::MatchExactly | Qt::MatchCaseSensitive);
+    items[0]->setText(newName);
 }
 
 void MainAct::mRemoveCategoryButton_clicked()
 {
-    QString oldCat = mCategoryListBox->selectedItem()->text();
+    QString oldCat = mCategoryListBox->currentItem()->text();
     int choice = QMessageBox::warning(this, tr("BibleMemorizer"),
         tr("Are you sure you want to remove this category?\n\n"
            "No verses will be deleted, but the category will be\n"
@@ -468,7 +471,11 @@ void MainAct::mRemoveCategoryButton_clicked()
 
 void MainAct::categoryRemoved(const QString& category)
 {
-    delete mCategoryListBox->findItem(category, B_ExactMatch | B_CaseSensitive);
+    QList<QListWidgetItem*> items = mCategoryListBox->findItems(category, Qt::MatchExactly | Qt::MatchCaseSensitive);
+    foreach(QListWidgetItem *item, items)
+    {
+        mCategoryListBox->removeItemWidget(item);
+    }
 }
 
 MainAct::~MainAct()
@@ -477,7 +484,7 @@ MainAct::~MainAct()
 
 void MainAct::mCategoryListBox_selectionChanged()
 {
-    if (mCategoryListBox->selectedItem() != 0)
+    if (mCategoryListBox->currentItem())
     {
         mRenameCategoryButton->setEnabled(true);
         mRemoveCategoryButton->setEnabled(true);
@@ -498,7 +505,7 @@ void MainAct::preferencesSettingsAction_activated()
         BiblePlugin* newPlugin = new BiblePlugin(pluginSelect.getMeta());
         for (int i = 0; i < mTabWidget->count(); i++)
         {
-            QWidget *nextPage = mTabWidget->page(i);
+            QWidget *nextPage = mTabWidget->widget(i);
             if (VerseAct* nextWidget = dynamic_cast<VerseAct*>(nextPage))
             {
                 nextWidget->setPlugin(newPlugin);
@@ -514,7 +521,7 @@ void MainAct::mVerseSelection_verseActivated(Verse* verse)
     if (verse != 0)
     {
         openVerse(verse, static_cast<VerseAct::PageType>
-                (mOpenForComboBox->currentItem()));
+                (mOpenForComboBox->currentIndex()));
     }
 }
 
@@ -526,13 +533,13 @@ void MainAct::openVerse(Verse* verse, VerseAct::PageType pageType)
                 (mTabWidget->indexOf(mVersePaneMap[verse]) != -1)){
             VerseAct* act = mVersePaneMap[verse];
             act->choosePage(pageType);
-            mTabWidget->showPage(mVersePaneMap[verse]);
+            mTabWidget->setCurrentWidget(mVersePaneMap[verse]);
         }
         else{
             VerseAct* newAct = new VerseAct(verse, mPlugin,
                     mVerses->getCategories(), pageType, *mTabWidget, mVerses);
-            mTabWidget->insertTab(newAct, verse->getReference());
-            mTabWidget->showPage(newAct);
+            mTabWidget->addTab(newAct, verse->getReference());
+            mTabWidget->setCurrentWidget(newAct);
             mVersePaneMap[verse] = newAct;
         }
     }
@@ -569,22 +576,23 @@ void MainAct::editMenu_aboutToShow()
     disconnect(editPasteAction, SIGNAL(activated()), 0, 0);
     disconnect(editUndoAction, SIGNAL(activated()), 0, 0);
     disconnect(editRedoAction, SIGNAL(activated()), 0, 0);
-    if ((currWidget != 0) && (currWidget->inherits(BQTextEdit_TypeName) ||
+    if ((currWidget != 0) && (currWidget->inherits("QTextEdit") ||
             currWidget->inherits("QLineEdit") ||
             (currWidget->inherits("QComboBox") &&
             static_cast<QComboBox*>(currWidget)->lineEdit() != NULL)))
     {
         QWidget* receiver = NULL;
-        if (currWidget->inherits(BQTextEdit_TypeName))
+        if (currWidget->inherits("QTextEdit"))
         {
-            BQTextEdit* currEdit = static_cast<BQTextEdit*>(currWidget);
+            QTextEdit* currEdit = static_cast<QTextEdit*>(currWidget);
             receiver = currEdit;
-            editCopyAction->setEnabled(currEdit->hasSelectedText());
-            editCutAction->setEnabled(currEdit->hasSelectedText() &&
-                    !currEdit->isReadOnly());
-            editPasteAction->setEnabled(!currEdit->isReadOnly());
-            editUndoAction->setEnabled(currEdit->isUndoAvailable());
-            editRedoAction->setEnabled(currEdit->isRedoAvailable());
+            // TODO:
+            //editCopyAction->setEnabled(currEdit->hasSelectedText());
+            //editCutAction->setEnabled(currEdit->hasSelectedText() &&
+            //        !currEdit->isReadOnly());
+            //editPasteAction->setEnabled(!currEdit->isReadOnly());
+            //editUndoAction->setEnabled(currEdit->isUndoAvailable());
+            //editRedoAction->setEnabled(currEdit->isRedoAvailable());
         }
         else if (currWidget->inherits("QComboBox") ||
                 currWidget->inherits("QLineEdit"))
