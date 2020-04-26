@@ -39,10 +39,14 @@ namespace bmemui
 
 QuizCreateAct::QuizCreateAct(VerseCollection* coll,
         QuizMultiAct::QuizMode mode, QWidget *parent, const char * name)
-:QuizCreateUI(parent, name), mLeft(new VerseSelectAct(this, true, coll)),
+:QDialog(parent), mLeft(new VerseSelectAct(this, true, coll)),
         mRight(new VerseSelectAct(this, true, coll, &mFilter)), mVerses(coll),
         mMode(mode)
 {
+    setupUi(this);
+
+    setWindowTitle(name);
+
     QVBoxLayout *leftLayout = new QVBoxLayout;
     leftLayout->addWidget((QWidget*)mLeft);
     leftLayout->addWidget((QWidget*)mSelectAllButton);
@@ -107,11 +111,11 @@ void QuizCreateAct::mRemoveButton_clicked()
 void QuizCreateAct::mSaveCategoryButton_clicked()
 {
     bool ok;
-    QString newCat = QInputDialog::getText(
+    QString newCat = QInputDialog::getText(this,
             tr("BibleMemorizer"), 
             tr("Enter the name of the new or existing category:"),
-            QLineEdit::Normal, QString::null, &ok, this );
-    newCat = newCat.simplifyWhiteSpace();
+            QLineEdit::Normal, QString(), &ok);
+    newCat = newCat.simplified();
     if (ok && !newCat.isEmpty() && !mVerses->containsCategory(newCat)) 
     {
         mVerses->addCategory(newCat);

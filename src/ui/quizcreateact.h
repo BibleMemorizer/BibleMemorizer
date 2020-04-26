@@ -39,7 +39,7 @@ namespace bmemui
 {
 class VerseSelectAct;
 
-class QuizCreateAct: public QuizCreateUI {
+class QuizCreateAct: public QDialog, public Ui_QuizCreateUI {
 Q_OBJECT
 public:
     QuizCreateAct(bmemcore::VerseCollection* coll,
