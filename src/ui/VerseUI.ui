@@ -339,7 +339,7 @@
   </connection>
   <connection>
    <sender>mBookComboBox</sender>
-   <signal>textChanged(QString)</signal>
+   <signal>currentTextChanged(QString)</signal>
    <receiver>VerseUI</receiver>
    <slot>mBookComboBox_textChanged(QString)</slot>
    <hints>
@@ -371,7 +371,7 @@
   </connection>
   <connection>
    <sender>mTranslationComboBox</sender>
-   <signal>textChanged(QString)</signal>
+   <signal>currentTextChanged(QString)</signal>
    <receiver>VerseUI</receiver>
    <slot>mTranslationComboBox_textChanged(QString)</slot>
    <hints>
@@ -387,7 +387,7 @@
   </connection>
   <connection>
    <sender>mCategoryListBox</sender>
-   <signal>selectionChanged()</signal>
+   <signal>itemSelectionChanged()</signal>
    <receiver>VerseUI</receiver>
    <slot>mCategoriesListBox_selectionChanged()</slot>
    <hints>
@@ -435,7 +435,7 @@
   </connection>
   <connection>
    <sender>mChapterComboBox</sender>
-   <signal>textChanged(QString)</signal>
+   <signal>currentTextChanged(QString)</signal>
    <receiver>VerseUI</receiver>
    <slot>mChapterComboBox_textChanged(QString)</slot>
    <hints>
@@ -466,4 +466,15 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>mVersesEdit_textChanged(QString)</slot>
+  <slot>mVerseLoaderButton_clicked()</slot>
+  <slot>mTranslationComboBox_textChanged(QString)</slot>
+  <slot>mTextEdit_textChanged()</slot>
+  <slot>mModeComboBox_activated(int)</slot>
+  <slot>mCloseButton_clicked()</slot>
+  <slot>mChapterComboBox_textChanged(QString)</slot>
+  <slot>mCategoriesListBox_selectionChanged()</slot>
+  <slot>mBookComboBox_textChanged(QString)</slot>
+ </slots>
 </ui>
