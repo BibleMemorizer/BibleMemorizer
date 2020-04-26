@@ -53,8 +53,7 @@ VerseCollection::VerseCollection(const QString& fileName, int& status)
             //We have the correct type of file.
             status = 0;
             QDomElement rootElement = node.toElement();
-            QStringList versionInfo = QStringList::split(".",
-                            rootElement.attribute("version", "1.0"));
+            QStringList versionInfo = rootElement.attribute("version", "1.0").split(".");
             //Check for legacy category mode, with semicolon-separated values.
             bool legacyCats = false;
             if ((versionInfo[0].toInt() == 1) && (versionInfo[1].toInt() < 3))
@@ -121,8 +120,7 @@ VerseCollection::VerseCollection(const QString& fileName, int& status)
                                 }
                                 textNode = textNode.nextSibling();
                             }
-                            mCategories = QStringList::split(";",
-                                    categoriesJoined);
+                            mCategories = categoriesJoined.split(";");
                       }
                     }
                 }
@@ -195,16 +193,13 @@ void VerseCollection::addCategory(const QString& category)
 
 bool VerseCollection::containsCategory(const QString& category) const
 {
-    QStringList::const_iterator it = mCategories.find(category);
-    return (it != mCategories.end());
+    return mCategories.contains(category);
 }
 
 bool VerseCollection::removeCategory(const QString& category, bool changeVerses)
 {
-    QStringList::iterator cIt = mCategories.find(category);
-    if (cIt != mCategories.end())
+    if (mCategories.removeOne(category))
     {
-        mCategories.erase(cIt);
         if (changeVerses)
         {
             std::list<Verse*>::iterator vIt = mVerses.begin();
@@ -225,11 +220,10 @@ bool VerseCollection::removeCategory(const QString& category, bool changeVerses)
 bool VerseCollection::renameCategory(const QString& oldCategory,
         const QString& newCategory, bool changeVerses)
 {
-    QStringList::iterator cIt = mCategories.find(oldCategory);
-    if (cIt != mCategories.end())
+    int i = mCategories.indexOf(oldCategory);
+    if (i != -1)
     {
-        cIt = mCategories.erase(cIt);
-        mCategories.insert(cIt, newCategory);
+        mCategories.replace(i, newCategory);
         if (changeVerses)
         {
             std::list<Verse*>::iterator vIt = mVerses.begin();
@@ -275,7 +269,7 @@ void VerseCollection::saveFile(const QString &fileName)
         it++;
     }
     QFile file(fileName);
-    file.open(bmemui::BIO_WriteOnly);
+    file.open(QIODevice::WriteOnly);
     QTextStream out(&file);
     doc.save(out, 4);
     file.close();
