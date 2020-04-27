@@ -43,7 +43,7 @@ VerseCollection::VerseCollection(const QString& fileName, int& status)
     status = 1;
     QDomDocument doc;
     QFile file(fileName);
-    bool success = doc.setContent(&file);
+    doc.setContent(&file);
     QDomNode node = doc.firstChild();
     while (!node.isNull())
     {

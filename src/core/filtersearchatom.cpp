@@ -119,6 +119,7 @@ bool FilterSearchAtom::allows(const Verse& verse)
             return false;
         break;
     }
+    qFatal("unhandled SearchType");
 }
 
 bool FilterSearchAtom::valid()

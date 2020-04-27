@@ -34,20 +34,18 @@ namespace bmemcore
 {
 
 BiblePluginMeta::BiblePluginMeta()
-:mName(tr("No Name")), mShortName(tr("N/A")), mVersion(tr("N/A")),
+:QObject(), mName(tr("No Name")), mShortName(tr("N/A")), mVersion(tr("N/A")),
         mInterfaceVersion(tr("Unknown")), mAuthors(tr("Not Provided")),
-        mLicenseName(tr("Unknown")), mLicense(tr("Not Provided")),
-        QObject()
+        mLicenseName(tr("Unknown")), mLicense(tr("Not Provided"))
 {}
 
 BiblePluginMeta::BiblePluginMeta(const BiblePluginMeta& other)
-:mFileName(other.mFileName), mMetaFileName(other.mMetaFileName),
+:QObject(), mFileName(other.mFileName), mMetaFileName(other.mMetaFileName),
     mName(other.mName), mShortName(other.mShortName), mVersion(other.mVersion),
     mDescription(other.mDescription),
     mInterfaceVersion(other.mInterfaceVersion), mAuthors(other.mAuthors),
     mWebSite(other.mWebSite), mCopyright(other.mCopyright),
-    mLicenseName(other.mLicenseName), mLicense(other.mLicense),
-    QObject()
+    mLicenseName(other.mLicenseName), mLicense(other.mLicense)
 {}
 
 BiblePluginMeta& BiblePluginMeta::operator=(const BiblePluginMeta& other)
@@ -68,13 +66,13 @@ BiblePluginMeta& BiblePluginMeta::operator=(const BiblePluginMeta& other)
 }
 
 BiblePluginMeta::BiblePluginMeta(const QString& fileName)
-:mMetaFileName(fileName), mName(tr("No Name")), mShortName(tr("Unknown")),
+:QObject(), mMetaFileName(fileName), mName(tr("No Name")), mShortName(tr("Unknown")),
         mVersion(tr("(Version Not Specified)")),
         mDescription(tr("No Description Provided")),
         mInterfaceVersion(tr("Unknown")), mAuthors(tr("Not Provided")),
         mWebSite(tr("No Web Site")), mCopyright(tr("Unknown Copyright Status")),
         mLicenseName(tr("Unknown")),
-        mLicense(tr("Not Provided")), QObject()
+        mLicense(tr("Not Provided"))
 {
     QFile file(fileName);
     QFileInfo fileInfo(file);

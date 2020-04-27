@@ -237,10 +237,10 @@ void PreferencesAct::mDirButton_clicked()
     else
     {
         if (!newDirectory.isEmpty())
-            int response = QMessageBox::warning(this,
-                    tr("Bad Plugin Directory"),
-                    tr("No valid plugins found in that directory.\n\n"
-                    "Using previous directory."));
+            QMessageBox::warning(this,
+                tr("Bad Plugin Directory"),
+                tr("No valid plugins found in that directory.\n\n"
+                "Using previous directory."));
     }
 }
 

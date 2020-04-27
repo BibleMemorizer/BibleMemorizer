@@ -42,8 +42,8 @@ namespace bmemui{
 VerseSelectAct::VerseSelectAct(QWidget* parent, bool multiSelect,
     VerseCollection* coll, SearchFilter* requiredFilter)
 :QWidget(parent), mVerseCollection(coll),
-        mSearchFilter(new FilterQuery("true")),
         mSearchQuery(new FilterQuery("true")),
+        mSearchFilter(new FilterQuery("true")),
         mRequiredFilterMode(false)
 {
     setupUi(this);

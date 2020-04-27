@@ -315,6 +315,7 @@ void MainAct::openFile(const QString &fileName)
                        "newer version of the verse collection format\n"
                        "than this version of BibleMemorizer uses.  Some "
                        "features may not work correctly."));
+        // fallthrough
     default:
         changeVerseCollection(newCollection);
         setCurrentFileName(fileName);

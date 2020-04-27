@@ -35,6 +35,7 @@ FilterInvalid::~FilterInvalid()
 
 bool FilterInvalid::allows(const Verse& theVerse)
 {
+    Q_UNUSED(theVerse)
     return false;
 }
 

@@ -42,8 +42,8 @@ QuizAct::QuizAct(Verse* verse, QWidget* parent)
 }
 
 QuizAct::QuizAct(std::vector<Verse*> verses, QWidget* parent)
-:QWidget(parent), mVerse(verses[0]), mCurrentVerse(0), mNumCorrect(0),
-    mNumAttempts(0), mVerses(verses)
+:QWidget(parent), mVerse(verses[0]), mVerses(verses), mCurrentVerse(0), mNumCorrect(0),
+    mNumAttempts(0)
 {
     setupUi(this);
 

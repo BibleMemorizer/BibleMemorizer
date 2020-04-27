@@ -35,6 +35,7 @@ FilterAllowAll::~FilterAllowAll()
 
 bool FilterAllowAll::allows(const Verse& theVerse)
 {
+    Q_UNUSED(theVerse)
     return true;
 }
 

@@ -25,10 +25,10 @@
 
 #include "core/searchfilter.h"
 #include <qstring.h>
-class bmemcore::Verse;
 
 namespace bmemcore
 {
+class Verse;
 
 /**
 @author Jeremy Erickson

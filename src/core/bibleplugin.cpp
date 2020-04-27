@@ -37,7 +37,7 @@ namespace bmemcore
 {
 
 BiblePlugin::BiblePlugin(BiblePluginMeta meta, bool* success)
-    :mMeta(meta), mPlugin(meta.getFileName()), QObject()
+    :QObject(), mMeta(meta), mPlugin(meta.getFileName())
 {
     if (!mPlugin.load() || mMeta.getInterfaceVersion() != 
                                 BMEM_SUPPORTED_PLUGIN_INTERFACE)
