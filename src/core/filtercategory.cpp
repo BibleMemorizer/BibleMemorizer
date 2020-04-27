@@ -40,14 +40,7 @@ FilterCategory::~FilterCategory()
 
 bool FilterCategory::allows(const Verse& verse)
 {
-    if (verse.containsCategory(mCategory))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return verse.containsCategory(mCategory);
 }
 
 bool FilterCategory::valid()

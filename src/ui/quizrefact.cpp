@@ -89,7 +89,7 @@ void QuizRefAct::mFinishedButton_clicked()
     QStringList givenParts = given.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
 
     bool match = false;
-    if (correctParts.size() > 0 && givenParts.size() > 0)
+    if (!correctParts.empty() && !givenParts.empty())
     {
         match = (givenParts[0].startsWith(correctParts[0].left(3)));
         int correctIndex = 1;
@@ -142,7 +142,7 @@ void QuizRefAct::mNextButton_clicked()
     }
     else
     {
-        disconnect(mVerse, 0, this, 0);
+        disconnect(mVerse, nullptr, this, nullptr);
         mVerse = mVerses[mCurrentVerse];
         initVerse();
         mReferenceText->setText("");

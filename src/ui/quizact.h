@@ -44,7 +44,7 @@ public slots:
     virtual void mCorrectButton_clicked();
     virtual void mClearButton_clicked();
     virtual void mNextButton_clicked();
-    virtual void verseChanged(const Verse&, Verse::ChangeType);
+    virtual void verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType);
 signals:
     void finished(int numCorrect, int numTotal);
     void nextVerse(int currVerse, int total);

@@ -166,7 +166,7 @@ void QuizAct::mNextButton_clicked()
     }
     else
     {
-        disconnect(mVerse, 0, this, 0);
+        disconnect(mVerse, nullptr, this, nullptr);
         mVerse = mVerses[mCurrentVerse];
         initVerse();
         mClearButton_clicked();

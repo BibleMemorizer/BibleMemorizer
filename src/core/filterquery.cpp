@@ -68,7 +68,7 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
     QString currExpr = expression.trimmed();
     QString currExprLower = currExpr.toLower();
     while (currExpr.length() > 0){
-        SearchFilter* currToken = 0;
+        SearchFilter* currToken = nullptr;
         int newIndex = 0;
         if (currExpr.startsWith("(")){
             //Find closing parentheses, evaluate with recursion.
@@ -115,21 +115,19 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
             if (stack.empty()){
                 return new FilterInvalid();
             }
-            else{
-                currToken = new FilterOr(stack.top());
-                stack.pop();
-                newIndex = 3;
-            }
+
+            currToken = new FilterOr(stack.top());
+            stack.pop();
+            newIndex = 3;
         }
         else if (currExprLower.startsWith("and ")){
             if (stack.empty()){
                 return new FilterInvalid();
             }
-            else{
-                currToken = new FilterAnd(stack.top());
-                stack.pop();
-                newIndex = 4;
-            }
+
+            currToken = new FilterAnd(stack.top());
+            stack.pop();
+            newIndex = 4;
         }
         else if (currExprLower.startsWith("true ")){
             currToken = new FilterAllowAll();
@@ -145,10 +143,9 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
                 clearStack(stack, currToken);
                 return new FilterInvalid();
             }
-            else{
-                newIndex += 12;
-                currToken = new FilterCategory(desiredText);
-            }
+
+            newIndex += 12;
+            currToken = new FilterCategory(desiredText);
         }
         else if (currExprLower.startsWith("testament equals ") ||
                  currExprLower.startsWith("testament matches ")){
@@ -161,10 +158,9 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
                 clearStack(stack, currToken);
                 return new FilterInvalid();
             }
-            else{
-                newIndex += len;
-                currToken = new FilterTestament(desiredText);
-            }
+
+            newIndex += len;
+            currToken = new FilterTestament(desiredText);
         }
         else{
             FilterSearchAtom* ourAtom = new FilterSearchAtom();
@@ -272,22 +268,18 @@ SearchFilter* FilterQuery::constructTree(const QString& expression){
     if (stack.empty()){
         return new FilterInvalid();
     }
-    else{
-        SearchFilter *toReturn = stack.top();
-        stack.pop();
-        if (!stack.empty()){
-            clearStack(stack, 0);
-            delete toReturn;
-            return new FilterInvalid();
-        }
-		else{
-			return toReturn;
-		}
+
+    SearchFilter *toReturn = stack.top();
+    stack.pop();
+    if (!stack.empty()){
+        clearStack(stack, nullptr);
+        delete toReturn;
+        return new FilterInvalid();
     }
+    return toReturn;
 }
 
-void FilterQuery::clearStack(std::stack<SearchFilter*>& stack,
-        SearchFilter* currToken){
+void FilterQuery::clearStack(std::stack<SearchFilter*>& stack, SearchFilter* currToken){
     bool deletedToken = false;
     while (!stack.empty()){
         if (stack.top() == currToken){

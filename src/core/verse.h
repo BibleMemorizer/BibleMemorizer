@@ -96,7 +96,7 @@ public:
 
     ~Verse();
 signals:
-    void verseChanged(const Verse& verse, Verse::ChangeType change);
+    void verseChanged(const bmemcore::Verse& verse, bmemcore::Verse::ChangeType change);
 protected:
     QString mBook;
     uBookType mUBook;

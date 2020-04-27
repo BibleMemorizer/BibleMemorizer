@@ -25,9 +25,9 @@
 #include <config.h>
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include <QApplication>
 #include "ui/mainact.h"
 using namespace bmemui;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("BibleMemorizer");
     app.setQuitOnLastWindowClosed(false);
     //Seed random number generator for quiz randomization.
-    srand(unsigned(time(NULL)));
+    srand(unsigned(time(nullptr)));
     MainAct mainui;
     //app.setMainWidget(&mainui);
     mainui.show();

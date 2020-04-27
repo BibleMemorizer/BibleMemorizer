@@ -163,7 +163,7 @@ void Verse::parseElement(const QDomElement &element, const QStringList&
 
 QDomElement Verse::generateElement(QDomDocument* doc) const
 {
-    bool createdDoc = (doc == 0);
+    bool createdDoc = (doc == nullptr);
     if (createdDoc)
         doc = new QDomDocument();
     QDomElement verseElement = doc->createElement("verse");
@@ -332,26 +332,26 @@ void Verse::addCategory(const QString& newCategory)
 
 bool Verse::removeCategory(const QString& oldCategory)
 {
-    if (mCategories.removeOne(oldCategory))
+    if (!mCategories.removeOne(oldCategory))
     {
-        notifyWatchers(CHANGE_CATEGORIES);
-        return true;
-    }
-    else
         return false;
+    }
+
+    notifyWatchers(CHANGE_CATEGORIES);
+    return true;
 }
 
 bool Verse::replaceCategory(const QString& oldCategory, const QString&
         newCategory)
 {
     int i = mCategories.indexOf(oldCategory);
-    if (i != -1)
+    if (i == -1)
     {
-        mCategories.replace(i, newCategory);
-        return true;
-    }
-    else
         return false;
+    }
+
+    mCategories.replace(i, newCategory);
+    return true;
 }
 
 bool Verse::containsCategory(const QString& category) const
@@ -612,28 +612,27 @@ int Verse::compareTo(const Verse& other) const
     if (getUBook().testament != other.getUBook().testament){
         return getUBook().testament - other.getUBook().testament;
     }
-    else if (getUBook().book != other.getUBook().book){
+    if (getUBook().book != other.getUBook().book) {
         return getUBook().book - other.getUBook().book;
     }
-    else if (getChapter() != other.getChapter()){
+    if (getChapter() != other.getChapter()) {
         return getChapter().toInt() - other.getChapter().toInt();
     }
-    else{
-        QString myVerses = getVerses().trimmed();
-        for (int i = 0; i < myVerses.length(); i++){
-            if (!myVerses[i].isDigit()){
-                myVerses.remove(i, myVerses.length());
-                break;
-            }
+
+    QString myVerses = getVerses().trimmed();
+    for (int i = 0; i < myVerses.length(); i++){
+        if (!myVerses[i].isDigit()){
+            myVerses.remove(i, myVerses.length());
+            break;
         }
-        QString otherVerses = other.getVerses().trimmed();
-        for (int i = 0; i < otherVerses.length(); i++){
-            if (!otherVerses[i].isDigit()){
-                otherVerses.remove(i, otherVerses.length());
-            }
-        }
-        return myVerses.toInt() - otherVerses.toInt();
     }
+    QString otherVerses = other.getVerses().trimmed();
+    for (int i = 0; i < otherVerses.length(); i++){
+        if (!otherVerses[i].isDigit()){
+            otherVerses.remove(i, otherVerses.length());
+        }
+    }
+    return myVerses.toInt() - otherVerses.toInt();
 }
 
 Verse::~Verse()

@@ -43,7 +43,7 @@ CorrectionWord::CorrectionWord(const QString& correct, const QString& given)
         mWordState = WORD_STATE_CORRECT;
         return;
     }
-    else if (correct == "")
+    if (correct == "")
     {
         mWord = given;
         mPuncError = false;
@@ -65,7 +65,7 @@ CorrectionWord::CorrectionWord(const QString& correct, const QString& given)
         mWordState = WORD_STATE_WRONG;
         return;
     }
-    else if (given == "")
+    if (given == "")
     {
         mWord = correct;
         mPuncError = false;

@@ -90,16 +90,14 @@ Verse* VerseSelectAct::getSelectedVerse()
 {
     std::list<Verse*> verses = getSelectedVerses();
     if (verses.empty()){
-        return 0;
+        return nullptr;
     }
-    else{
-        return *verses.begin();
-    }
+    return *verses.begin();
 }
 
 void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
     if (mVerseCollection != coll){
-        disconnect(mVerseCollection, 0, this, 0);
+        disconnect(mVerseCollection, nullptr, this, nullptr);
     }
     items.clear();
     verses.clear();
@@ -119,7 +117,7 @@ void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
             verses.end(); it++){
         connect(*it, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
                 this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
-        items[*it] = 0;
+        items[*it] = nullptr;
     }
     mFilterComboBox->clear();
     mFilterComboBox->insertItem(0, tr("All Verses"));
@@ -135,7 +133,7 @@ void VerseSelectAct::verseAdded(Verse* verse){
         insert(verse);
     }
     else{
-        items[verse] = 0;
+        items[verse] = nullptr;
     }
 }
 
@@ -170,7 +168,7 @@ void VerseSelectAct::mSearchButton_clicked()
 }
 
 void VerseSelectAct::mFilterComboBox_activated(int item){
-    if ((item == 1) && (mSearchQuery == 0)){
+    if ((item == 1) && (mSearchQuery == nullptr)){
         mSearchButton_clicked();
     }
     else{
@@ -211,17 +209,17 @@ void VerseSelectAct::verseChanged(const Verse& verse, Verse::ChangeType changeTy
 {
     Verse* verseRef = const_cast<Verse*>(&verse);
     if (changeType == Verse::CHANGE_DESTROYED){
-        disconnect(&verse, 0, this, 0);
+        disconnect(&verse, nullptr, this, nullptr);
         verses.erase(items[verseRef]);
         delete items[verseRef];
-        items[verseRef] = 0;
+        items[verseRef] = nullptr;
     }
     else{
         bool selected = false;
         if (QListWidgetItem* listItem = items[verseRef]){
             selected = listItem->isSelected();
             verses.erase(listItem);
-            items[verseRef] = 0;
+            items[verseRef] = nullptr;
             delete listItem;
         }
         if (mSearchFilter->allows(verse)){
@@ -229,7 +227,7 @@ void VerseSelectAct::verseChanged(const Verse& verse, Verse::ChangeType changeTy
             items[verseRef]->setSelected(selected);
         }
         else{
-            items[verseRef] = 0;
+            items[verseRef] = nullptr;
         }
     }
 }
@@ -266,7 +264,7 @@ void VerseSelectAct::recreateList(){
         else{
             if (items[*it]){
                 delete items[*it];
-                items[*it] = 0;
+                items[*it] = nullptr;
             }
         }
     }

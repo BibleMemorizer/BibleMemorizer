@@ -197,8 +197,8 @@ void VerseAct::removeCategory(const QString& oldCategory)
 
 VerseAct::~VerseAct()
 {
-    if (mVerse != 0)
-        disconnect(mVerse, 0, this, 0);
+    if (mVerse != nullptr)
+        disconnect(mVerse, nullptr, this, nullptr);
         //mVerse->removeWatcher(this);
     mQuizPage->deleteLater();
 }
@@ -329,8 +329,8 @@ void VerseAct::closeMe(bool verseDying)
 {
     mTabWidget.removeTab(mTabWidget.indexOf(this));
     if (!verseDying)
-        disconnect(mVerse, 0, this, 0);
-    mVerse = 0;
+        disconnect(mVerse, nullptr, this, nullptr);
+    mVerse = nullptr;
     deleteLater();
 }
 

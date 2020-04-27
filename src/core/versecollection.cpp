@@ -159,15 +159,15 @@ bool VerseCollection::removeVerse(Verse  *verse)
 {
     std::list<Verse*>::iterator it = std::find(mVerses.begin(), mVerses.end(),
             verse);
-    if (it != mVerses.end())
+    if (it == mVerses.end())
     {
-        mVerses.erase(it);
-        verse->deleteLater();
-        mChanged = true;
-        return true;
-    }
-    else
         return false;
+    }
+
+    mVerses.erase(it);
+    verse->deleteLater();
+    mChanged = true;
+    return true;
 }
 
 void VerseCollection::setCategories(QStringList categories)
@@ -198,47 +198,47 @@ bool VerseCollection::containsCategory(const QString& category) const
 
 bool VerseCollection::removeCategory(const QString& category, bool changeVerses)
 {
-    if (mCategories.removeOne(category))
+    if (!mCategories.removeOne(category))
     {
-        if (changeVerses)
-        {
-            std::list<Verse*>::iterator vIt = mVerses.begin();
-            while (vIt != mVerses.end())
-            {
-                (*vIt)->removeCategory(category);
-                vIt++;
-            }
-        }
-        mChanged = true;
-        emit categoryRemoved(category);
-        return true;
-    }
-    else
         return false;
+    }
+
+    if (changeVerses)
+    {
+        std::list<Verse*>::iterator vIt = mVerses.begin();
+        while (vIt != mVerses.end())
+        {
+            (*vIt)->removeCategory(category);
+            vIt++;
+        }
+    }
+    mChanged = true;
+    emit categoryRemoved(category);
+    return true;
 }
 
 bool VerseCollection::renameCategory(const QString& oldCategory,
         const QString& newCategory, bool changeVerses)
 {
     int i = mCategories.indexOf(oldCategory);
-    if (i != -1)
+    if (i == -1)
     {
-        mCategories.replace(i, newCategory);
-        if (changeVerses)
-        {
-            std::list<Verse*>::iterator vIt = mVerses.begin();
-            while (vIt != mVerses.end())
-            {
-                (*vIt)->replaceCategory(oldCategory, newCategory);
-                vIt++;
-            }
-        }
-        mChanged = true;
-        emit categoryRenamed(oldCategory, newCategory);
-        return true;
-    }
-    else
         return false;
+    }
+
+    mCategories.replace(i, newCategory);
+    if (changeVerses)
+    {
+        std::list<Verse*>::iterator vIt = mVerses.begin();
+        while (vIt != mVerses.end())
+        {
+            (*vIt)->replaceCategory(oldCategory, newCategory);
+            vIt++;
+        }
+    }
+    mChanged = true;
+    emit categoryRenamed(oldCategory, newCategory);
+    return true;
 }
 
 void VerseCollection::saveFile(const QString &fileName)

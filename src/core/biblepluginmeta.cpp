@@ -34,13 +34,13 @@ namespace bmemcore
 {
 
 BiblePluginMeta::BiblePluginMeta()
-:QObject(), mName(tr("No Name")), mShortName(tr("N/A")), mVersion(tr("N/A")),
+: mName(tr("No Name")), mShortName(tr("N/A")), mVersion(tr("N/A")),
         mInterfaceVersion(tr("Unknown")), mAuthors(tr("Not Provided")),
         mLicenseName(tr("Unknown")), mLicense(tr("Not Provided"))
 {}
 
 BiblePluginMeta::BiblePluginMeta(const BiblePluginMeta& other)
-:QObject(), mFileName(other.mFileName), mMetaFileName(other.mMetaFileName),
+: QObject(), mFileName(other.mFileName), mMetaFileName(other.mMetaFileName),
     mName(other.mName), mShortName(other.mShortName), mVersion(other.mVersion),
     mDescription(other.mDescription),
     mInterfaceVersion(other.mInterfaceVersion), mAuthors(other.mAuthors),
@@ -66,7 +66,7 @@ BiblePluginMeta& BiblePluginMeta::operator=(const BiblePluginMeta& other)
 }
 
 BiblePluginMeta::BiblePluginMeta(const QString& fileName)
-:QObject(), mMetaFileName(fileName), mName(tr("No Name")), mShortName(tr("Unknown")),
+: mMetaFileName(fileName), mName(tr("No Name")), mShortName(tr("Unknown")),
         mVersion(tr("(Version Not Specified)")),
         mDescription(tr("No Description Provided")),
         mInterfaceVersion(tr("Unknown")), mAuthors(tr("Not Provided")),

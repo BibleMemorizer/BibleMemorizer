@@ -82,10 +82,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
         {
             return toReturn;
         }
-        else
-        {
-            tryFor = toReturn.getBaseName();
-        }
+        tryFor = toReturn.getBaseName();
     }
     QString directory = Settings::getPluginDir();
     QList<BiblePluginMeta> files;
@@ -132,7 +129,7 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
             //All other attempts have failed, must prompt user.
             while (!worked)
             {
-                int response = QMessageBox::warning(0,
+                int response = QMessageBox::warning(nullptr,
                         tr("Plugin Directory Not Found"),
                         tr("The plugins for BibleMemorizer could not be "
                         "found.\n"
@@ -186,19 +183,15 @@ BiblePluginMeta PreferencesAct::getMetaStatic(bool &success)
         {
             return selector.getMeta();
         }
-        else
-        {
-            success = false;
-            BiblePluginMeta toReturn;
-            return toReturn;
-        }
-    }
-    else
-    {
+
         success = false;
         BiblePluginMeta toReturn;
         return toReturn;
     }
+
+    success = false;
+    BiblePluginMeta toReturn;
+    return toReturn;
 }
 
 BiblePluginMeta PreferencesAct::getMeta()

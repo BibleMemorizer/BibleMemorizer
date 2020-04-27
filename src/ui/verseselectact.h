@@ -54,13 +54,13 @@ public slots:
     void selectNone();
     void forceRefresh();
 protected slots:
-    void verseAdded(Verse* verse);
+    void verseAdded(bmemcore::Verse* verse);
     void categoryAdded(const QString& category);
     void categoryRemoved(const QString& category);
     void categoryRenamed(const QString& oldName, const QString& newName);
-    void verseChanged(const Verse&, Verse::ChangeType);
+    void verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType);
 signals:
-    void verseActivated(Verse* verse);
+    void verseActivated(bmemcore::Verse* verse);
     void selectionChanged(bool verseSelected);
 protected:
     VerseCollection *mVerseCollection;

@@ -67,7 +67,7 @@ public slots:
     virtual void mRenameCategoryButton_clicked();
     virtual void mAddCategoryButton_clicked();
     virtual void preferencesSettingsAction_activated();
-    virtual void mVerseSelection_verseActivated(Verse*);
+    virtual void mVerseSelection_verseActivated(bmemcore::Verse*);
     virtual void editMenu_aboutToShow();
     virtual void categoryAdded(const QString& category);
     virtual void categoryRemoved(const QString& category);

@@ -53,14 +53,7 @@ FilterTestament::~FilterTestament()
 
 bool FilterTestament::allows(const Verse& verse)
 {
-    if (verse.getUBook().testament == mTestament)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return verse.getUBook().testament == mTestament;
 }
 
 bool FilterTestament::valid()

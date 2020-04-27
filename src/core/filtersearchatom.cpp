@@ -72,51 +72,27 @@ bool FilterSearchAtom::allows(const Verse& verse)
     switch (mSearch)
     {
     case SEARCH_CONTAINS:
-        if (actText.contains(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return actText.contains(mText, Qt::CaseInsensitive);
         break;
     case SEARCH_NO_CONTAINS:
-        if (!actText.contains(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return !actText.contains(mText, Qt::CaseInsensitive);
         break;
     case SEARCH_MATCHES:
-        if (actText.toLower() == mText.toLower())
-            return true;
-        else
-            return false;
+        return actText.toLower() == mText.toLower();
     case SEARCH_NO_MATCHES:
-        if (actText.toLower() != mText.toLower())
-            return true;
-        else
-            return false;
+        return actText.toLower() != mText.toLower();
         break;
     case SEARCH_STARTSWITH:
-        if (actText.startsWith(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return actText.startsWith(mText, Qt::CaseInsensitive);
         break;
     case SEARCH_NO_STARTSWITH:
-        if (!actText.startsWith(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return !actText.startsWith(mText, Qt::CaseInsensitive);
         break;
     case SEARCH_ENDSWITH:
-        if (actText.endsWith(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return actText.endsWith(mText, Qt::CaseInsensitive);
         break;
     case SEARCH_NO_ENDSWITH:
-        if (!actText.endsWith(mText, Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return !actText.endsWith(mText, Qt::CaseInsensitive);
         break;
     }
     qFatal("unhandled SearchType");

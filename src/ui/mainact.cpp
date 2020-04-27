@@ -108,7 +108,7 @@ static const unsigned char icon_data[] = {
 };
 
 MainAct::MainAct(QWidget *parent)
-:QMainWindow(parent), currWidget(NULL), mVerses(new VerseCollection()),
+:QMainWindow(parent), currWidget(nullptr), mVerses(new VerseCollection()),
         mVerseSelection(new VerseSelectAct(mNavFrame, false, mVerses))
 {
     setupUi(this);
@@ -157,10 +157,7 @@ MainAct::MainAct(QWidget *parent)
 void MainAct::changeVerseCollection(VerseCollection* newCollection)
 {
     mVerseSelection->changeVerseCollection(newCollection);
-    if (mVerses != 0)
-    {
-        delete mVerses;
-    }
+    delete mVerses;
     mVerses = newCollection;
     initVerseCollection();
 }
@@ -229,7 +226,7 @@ bool MainAct::promptSave()
         {
             return save();
         }
-        else if (choice == QMessageBox::Cancel)
+        if (choice == QMessageBox::Cancel)
         {
             return false;
         }
@@ -239,15 +236,12 @@ bool MainAct::promptSave()
 
 bool MainAct::save()
 {
-     if (mCurrentFileName == "")
-     {
-        return saveAs();
-     }
-     else
-     {
-        mVerses->saveFile(mCurrentFileName);
-        return true;
-     }
+    if (mCurrentFileName == "")
+    {
+       return saveAs();
+    }
+    mVerses->saveFile(mCurrentFileName);
+    return true;
 }
 
 bool MainAct::saveAs()
@@ -325,7 +319,7 @@ void MainAct::openFile(const QString &fileName)
 void MainAct::mOpenButton_clicked()
 {
     Verse* verse = mVerseSelection->getSelectedVerse();
-    if (verse != 0)
+    if (verse != nullptr)
     {
         openVerse(verse, static_cast<VerseAct::PageType>
                 (mOpenForComboBox->currentIndex()));
@@ -510,7 +504,7 @@ void MainAct::preferencesSettingsAction_activated()
 
 void MainAct::mVerseSelection_verseActivated(Verse* verse)
 {
-    if (verse != 0)
+    if (verse != nullptr)
     {
         openVerse(verse, static_cast<VerseAct::PageType>
                 (mOpenForComboBox->currentIndex()));
@@ -519,7 +513,7 @@ void MainAct::mVerseSelection_verseActivated(Verse* verse)
 
 void MainAct::openVerse(Verse* verse, VerseAct::PageType pageType)
 {
-    if (verse != 0)
+    if (verse != nullptr)
     {
         if (mVersePaneMap.contains(verse) &&
                 (mTabWidget->indexOf(mVersePaneMap[verse]) != -1)){
@@ -563,17 +557,17 @@ void MainAct::doQuiz(QuizMultiAct::QuizMode mode)
 
 void MainAct::editMenu_aboutToShow()
 {
-    disconnect(editCopyAction, SIGNAL(activated()), 0, 0);
-    disconnect(editCutAction, SIGNAL(activated()), 0, 0);
-    disconnect(editPasteAction, SIGNAL(activated()), 0, 0);
-    disconnect(editUndoAction, SIGNAL(activated()), 0, 0);
-    disconnect(editRedoAction, SIGNAL(activated()), 0, 0);
-    if ((currWidget != 0) && (currWidget->inherits("QTextEdit") ||
+    disconnect(editCopyAction, SIGNAL(activated()), nullptr, nullptr);
+    disconnect(editCutAction, SIGNAL(activated()), nullptr, nullptr);
+    disconnect(editPasteAction, SIGNAL(activated()), nullptr, nullptr);
+    disconnect(editUndoAction, SIGNAL(activated()), nullptr, nullptr);
+    disconnect(editRedoAction, SIGNAL(activated()), nullptr, nullptr);
+    if ((currWidget != nullptr) && (currWidget->inherits("QTextEdit") ||
             currWidget->inherits("QLineEdit") ||
             (currWidget->inherits("QComboBox") &&
-            static_cast<QComboBox*>(currWidget)->lineEdit() != NULL)))
+            static_cast<QComboBox*>(currWidget)->lineEdit() != nullptr)))
     {
-        QWidget* receiver = NULL;
+        QWidget* receiver = nullptr;
         if (currWidget->inherits("QTextEdit"))
         {
             QTextEdit* currEdit = static_cast<QTextEdit*>(currWidget);

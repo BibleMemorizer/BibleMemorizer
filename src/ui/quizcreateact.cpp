@@ -160,7 +160,7 @@ std::vector<Verse*> QuizCreateAct::getVerses()
 
 void QuizCreateAct::mOKButton_clicked()
 {
-    if (getVerses().size() == 0){
+    if (getVerses().empty()){
         reject();
         return;
     }

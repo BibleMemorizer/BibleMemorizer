@@ -53,7 +53,7 @@ public:
     virtual bool valid();
 
 public slots:
-    virtual void verseChanged(const Verse&, Verse::ChangeType);
+    virtual void verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType);
 
 protected:
     std::vector<Verse*> mVerses;

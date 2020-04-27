@@ -54,9 +54,9 @@ public:
     bool hasChanged() const;
     virtual ~VerseCollection();
 public slots:
-    void verseChanged(const Verse& verse, Verse::ChangeType whatChanged);
+    void verseChanged(const bmemcore::Verse& verse, bmemcore::Verse::ChangeType whatChanged);
 signals:
-    void verseAdded(Verse* newVerse);
+    void verseAdded(bmemcore::Verse* newVerse);
     void categoryAdded(const QString& category);
     void categoryRemoved(const QString& category);
     void categoryRenamed(const QString& oldCategory, const QString& newCategory);

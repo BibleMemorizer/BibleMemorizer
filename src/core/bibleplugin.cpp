@@ -37,7 +37,7 @@ namespace bmemcore
 {
 
 BiblePlugin::BiblePlugin(BiblePluginMeta meta, bool* success)
-    :QObject(), mMeta(meta), mPlugin(meta.getFileName())
+    : mMeta(meta), mPlugin(meta.getFileName())
 {
     if (!mPlugin.load() || mMeta.getInterfaceVersion() != 
                                 BMEM_SUPPORTED_PLUGIN_INTERFACE)
@@ -50,27 +50,27 @@ BiblePlugin::BiblePlugin(BiblePluginMeta meta, bool* success)
             if (mMeta.getInterfaceVersion() !=
                                 BMEM_SUPPORTED_PLUGIN_INTERFACE)
             {
-                QMessageBox::warning(NULL, tr("Plugin Error"), tr(
+                QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
                     "The plugin is incompatible with this version\n"
                     "of BibleMemorizer.  You may see further error\n"
                     "messages."), QMessageBox::Ok, QMessageBox::NoButton);
             }
             else
             {
-                QMessageBox::warning(NULL, tr("Plugin Error"), tr(
+                QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
                     "The plugin could not be loaded.  You\n"
                     "may see further error messages."),
                     QMessageBox::Ok, QMessageBox::NoButton);
             }
         }
-        p_initialize = NULL;
-        p_finalize = NULL;
-        p_getBooks = NULL;
-        p_booksChanged = NULL;
-        p_book = NULL;
-        p_uBook = NULL;
-        p_translationsAvailable = NULL;
-        p_verseLoaderAvailable = NULL;
+        p_initialize = nullptr;
+        p_finalize = nullptr;
+        p_getBooks = nullptr;
+        p_booksChanged = nullptr;
+        p_book = nullptr;
+        p_uBook = nullptr;
+        p_translationsAvailable = nullptr;
+        p_verseLoaderAvailable = nullptr;
         return;
     }
     if (success)
@@ -101,11 +101,11 @@ BiblePlugin::BiblePlugin(BiblePluginMeta meta, bool* success)
     }
     useCountMap()[mMeta.getFileName()]++;
     //Initialize the plugin
-    if (p_initialize != NULL && useCountMap()[mMeta.getFileName()] == 1){
+    if (p_initialize != nullptr && useCountMap()[mMeta.getFileName()] == 1){
         p_initialize();
     }
-    else if (p_initialize == NULL){
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
+    else if (p_initialize == nullptr){
+        QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
                 "Either the plugin could not be loaded properly,\n"
                 "or it does not contain an initializer function."),
                 QMessageBox::Ok, QMessageBox::NoButton);
@@ -116,14 +116,14 @@ QStringList BiblePlugin::getBooks(const QString& translation)
 {
     if (mBooksList.empty() || booksChanged(translation))
     {
-        if (p_getBooks != NULL){
+        if (p_getBooks != nullptr){
             int size = 0;
             const char * const * bookList = p_getBooks(&size,
                     translation.toUtf8().data());
             mBooksList = toStringList(bookList, size);
         }
         else{
-            QMessageBox::warning(NULL, tr("Plugin Error"), tr(
+            QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
                     "The plugin either could not be loaded properly,\n"
                     "or it does not allow retrieval of books."),
                     QMessageBox::Ok, QMessageBox::NoButton);
@@ -134,76 +134,68 @@ QStringList BiblePlugin::getBooks(const QString& translation)
 
 bool BiblePlugin::booksChanged(const QString& translation)
 {
-    if (p_booksChanged != NULL){
+    if (p_booksChanged != nullptr){
         return static_cast<bool>(p_booksChanged(mLastTranslation.toUtf8().data(),
                 translation.toUtf8().data()));
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not handle book name retrieval\n"
-                "properly."), QMessageBox::Ok, QMessageBox::NoButton);
-        return false;
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not handle book name retrieval\n"
+            "properly."), QMessageBox::Ok, QMessageBox::NoButton);
+    return false;
 }
 
 QString BiblePlugin::book(uBookType uBook)
 {
-    if (p_book != NULL){
+    if (p_book != nullptr){
         return toString(p_book(uBook));
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not allow conversion from numeric\n"
-                "book to name."),
-                QMessageBox::Ok, QMessageBox::NoButton);
-        return tr("Unable to retrieve book.");
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not allow conversion from numeric\n"
+            "book to name."),
+            QMessageBox::Ok, QMessageBox::NoButton);
+    return tr("Unable to retrieve book.");
 }
 
 uBookType BiblePlugin::uBook(const QString& book)
 {
-    if (p_uBook != NULL){
+    if (p_uBook != nullptr){
         return p_uBook(book.toUtf8().data());
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not allow conversion from name to\n"
-                "numeric book."), QMessageBox::Ok, QMessageBox::NoButton);
-        uBookType newBook;
-        newBook.book = 0;
-        newBook.testament = 0;
-        return newBook;
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not allow conversion from name to\n"
+            "numeric book."), QMessageBox::Ok, QMessageBox::NoButton);
+    uBookType newBook;
+    newBook.book = 0;
+    newBook.testament = 0;
+    return newBook;
 }
 
 bool BiblePlugin::translationsAvailable()
 {
-    if (p_translationsAvailable != NULL){
+    if (p_translationsAvailable != nullptr){
         return static_cast<bool>(p_translationsAvailable());
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not allow its translation feature to\n"
-                "be queried."), QMessageBox::Ok, QMessageBox::NoButton);
-        return false;
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not allow its translation feature to\n"
+            "be queried."), QMessageBox::Ok, QMessageBox::NoButton);
+    return false;
 }
 
 QStringList BiblePlugin::getTranslations()
 {
     if (translationsAvailable() && mTranslationsList.empty())
     {
-        if (p_getTranslations != NULL){
+        if (p_getTranslations != nullptr){
             int size = 0;
             const char * const * translationList = p_getTranslations(&size);
             mTranslationsList = toStringList(translationList, size);
         }
         else{
-            QMessageBox::warning(NULL, tr("Plugin Error"), tr(
+            QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
                     "The plugin either could not be loaded properly,\n"
                     "or it falsely reports that it can list\n"
                     "translations even though it can't."), QMessageBox::Ok,
@@ -215,30 +207,26 @@ QStringList BiblePlugin::getTranslations()
 
 int BiblePlugin::getNumChapters(const QString& book, uBookType uBook)
 {
-    if (p_getNumChapters != NULL){
+    if (p_getNumChapters != nullptr){
         return p_getNumChapters(book.toUtf8().data(), uBook);
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not support retrieval of number of\n"
-                "chapters."), QMessageBox::Ok, QMessageBox::NoButton);
-        return 0;
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not support retrieval of number of\n"
+            "chapters."), QMessageBox::Ok, QMessageBox::NoButton);
+    return 0;
 }
 
 bool BiblePlugin::verseLoaderAvailable()
 {
-    if (p_verseLoaderAvailable != NULL){
+    if (p_verseLoaderAvailable != nullptr){
         return static_cast<bool>(p_verseLoaderAvailable());
     }
-    else{
-        QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                "The plugin either could not be loaded properly,\n"
-                "or it does not support querying whether it can\n"
-                "load verse text."), QMessageBox::Ok, QMessageBox::NoButton);
-        return false;
-    }
+    QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+            "The plugin either could not be loaded properly,\n"
+            "or it does not support querying whether it can\n"
+            "load verse text."), QMessageBox::Ok, QMessageBox::NoButton);
+    return false;
 }
 
 QString BiblePlugin::getVerse(const QString& book, uBookType uBook,
@@ -248,23 +236,20 @@ QString BiblePlugin::getVerse(const QString& book, uBookType uBook,
     if (verseLoaderAvailable() && verseAvailable(book, uBook, chapter,
             verses, translation))
     {
-        if (p_getVerse != NULL){
+        if (p_getVerse != nullptr){
             return toString(p_getVerse(book.toUtf8().data(), uBook, chapter.toUtf8().data(),
                     verses.toUtf8().data(), translation.toUtf8().data())).trimmed();
         }
-        else{
-            QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                    "The plugin either could not be loaded properly,\n"
-                    "or it falsely reports that it can load verse\n"
-                    "texts even though it cannot."), QMessageBox::Ok,
-                    QMessageBox::NoButton);
-            return "";
-        }
-    }
-    else
-    {
+        QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+                "The plugin either could not be loaded properly,\n"
+                "or it falsely reports that it can load verse\n"
+                "texts even though it cannot."), QMessageBox::Ok,
+                QMessageBox::NoButton);
         return "";
     }
+
+    return "";
+
 }
 
 bool BiblePlugin::verseAvailable(const QString& book, uBookType uBook, 
@@ -273,21 +258,19 @@ bool BiblePlugin::verseAvailable(const QString& book, uBookType uBook,
 {
     if (verseLoaderAvailable())
     {
-        if (p_verseAvailable != NULL){
+        if (p_verseAvailable != nullptr){
             return static_cast<bool>(p_verseAvailable(book.toUtf8().data(), uBook,
                     chapter.toUtf8().data(), verses.toUtf8().data(), translation.toUtf8().data()));
         }
-        else{
-            QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                    "The plugin either could not be loaded properly,\n"
-                    "or it falsely reports that it can query verse\n"
-                    "texts even though it cannot."), QMessageBox::Ok,
-                    QMessageBox::NoButton);
-            return false;
-        }
-    }
-    else
+        QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+                "The plugin either could not be loaded properly,\n"
+                "or it falsely reports that it can query verse\n"
+                "texts even though it cannot."), QMessageBox::Ok,
+                QMessageBox::NoButton);
         return false;
+    }
+
+    return false;
 }
 
 int BiblePlugin::verseCount(const QString& book, uBookType uBook, 
@@ -296,21 +279,19 @@ int BiblePlugin::verseCount(const QString& book, uBookType uBook,
 {
     if (verseLoaderAvailable())
     {
-        if (p_verseCount != NULL){
+        if (p_verseCount != nullptr){
             return p_verseCount(book.toUtf8().data(), uBook,
                     chapter.toUtf8().data(), verses.toUtf8().data(), translation.toUtf8().data());
         }
-        else{
-            QMessageBox::warning(NULL, tr("Plugin Error"), tr(
-                    "The plugin either could not be loaded properly,\n"
-                    "or falsely reports that it can query verse\n"
-                    "texts even though it cannot."), QMessageBox::Ok,
-                    QMessageBox::NoButton);
-            return 0;
-        }
+        QMessageBox::warning(nullptr, tr("Plugin Error"), tr(
+                "The plugin either could not be loaded properly,\n"
+                "or falsely reports that it can query verse\n"
+                "texts even though it cannot."), QMessageBox::Ok,
+                QMessageBox::NoButton);
+        return 0;
     }
-    else
-        return false;
+
+    return false;
 }
 
 BiblePluginMeta& BiblePlugin::getMeta()
@@ -344,7 +325,7 @@ BiblePlugin::~BiblePlugin()
     if (useCountMap()[mMeta.getFileName()] > 0){
         useCountMap()[mMeta.getFileName()]--;
     }
-    if (p_finalize != NULL && useCountMap()[mMeta.getFileName()] == 0){
+    if (p_finalize != nullptr && useCountMap()[mMeta.getFileName()] == 0){
         p_finalize();
     }
 }
