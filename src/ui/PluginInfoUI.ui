@@ -35,7 +35,7 @@
    </item>
    <item>
     <widget class="QTabWidget" name="mTabs">
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabAbout">
       <attribute name="title">
        <string>&amp;About</string>
       </attribute>
@@ -143,7 +143,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabLicense">
       <attribute name="title">
        <string>&amp;License (Unknown)</string>
       </attribute>
@@ -213,7 +213,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <resources/>
  <connections>
   <connection>
