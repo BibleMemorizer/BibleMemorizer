@@ -56,7 +56,7 @@ public:
     void choosePage(PageType);
     ~VerseAct();
 public slots:
-    virtual void verseChanged(const bmemcore::Verse&, Verse::ChangeType);
+    virtual void verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType);
     virtual void mModeComboBox_activated(int); //was (int index)
     virtual void mBookComboBox_textChanged(const QString&);
     virtual void mCategoriesListBox_selectionChanged();

@@ -146,8 +146,8 @@ MainAct::MainAct(QWidget *parent)
             SLOT(editMenu_aboutToShow()));
     connect(mVerseSelection, SIGNAL(selectionChanged(bool)), this,
             SLOT(mVerseSelection_selectionChanged(bool)));
-    connect(mVerseSelection, SIGNAL(verseActivated(Verse*)), this,
-            SLOT(mVerseSelection_verseActivated(Verse*)));
+    connect(mVerseSelection, SIGNAL(verseActivated(bmemcore::Verse*)), this,
+            SLOT(mVerseSelection_verseActivated(bmemcore::Verse*)));
     connect( qApp, SIGNAL( lastWindowClosed() ), qApp, SLOT( quit() ) );
     if (Settings::getOpenLastFile() && QFile::exists(Settings::getLastFile())){
         openFile(Settings::getLastFile());

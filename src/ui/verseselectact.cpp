@@ -103,8 +103,8 @@ void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
     verses.clear();
     mVerseListBox->clear();
     mVerseCollection = coll;
-    connect(mVerseCollection, SIGNAL(verseAdded(Verse*)), this,
-            SLOT(verseAdded(Verse*)));
+    connect(mVerseCollection, SIGNAL(verseAdded(bmemcore::Verse*)), this,
+            SLOT(verseAdded(bmemcore::Verse*)));
     connect(mVerseCollection, SIGNAL(categoryAdded(const QString &)), this,
             SLOT(categoryAdded(const QString&)));
     connect(mVerseCollection, SIGNAL(categoryRemoved(const QString&)), this,
@@ -115,8 +115,8 @@ void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
     const std::list<Verse*>& verses = coll->getVerses();
     for (std::list<Verse*>::const_iterator it = verses.begin(); it != 
             verses.end(); it++){
-        connect(*it, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-                this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+        connect(*it, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+                this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
         items[*it] = nullptr;
     }
     mFilterComboBox->clear();
@@ -127,8 +127,8 @@ void VerseSelectAct::changeVerseCollection(VerseCollection* coll){
 }
 
 void VerseSelectAct::verseAdded(Verse* verse){
-    connect(verse, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)), this,
-            SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+    connect(verse, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)), this,
+            SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     if (mSearchFilter->allows(*verse)){
         insert(verse);
     }

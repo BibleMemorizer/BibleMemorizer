@@ -131,8 +131,8 @@ VerseCollection::VerseCollection(const QString& fileName, int& status)
     }
     for (std::list<Verse*>::iterator it = mVerses.begin(); it!= mVerses.end();
                 it++){
-        connect(*it, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-                this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+        connect(*it, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+                this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     }
     mChanged = false;
 }
@@ -140,8 +140,8 @@ VerseCollection::VerseCollection(const QString& fileName, int& status)
 Verse* VerseCollection::addNewVerse()
 {
     Verse *toReturn = new Verse(this);
-    connect(toReturn, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-            this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+    connect(toReturn, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+            this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     mVerses.push_back(toReturn);
     mChanged = true;
     emit verseAdded(toReturn);

@@ -61,8 +61,8 @@ QuizAct::QuizAct(std::vector<Verse*> verses, QWidget* parent)
 
 void QuizAct::initVerse()
 {
-    connect(mVerse, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-            this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+    connect(mVerse, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+            this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     mVerseLabel->setText(mVerse->getReference() + " (" +
         mVerse->getTranslation() + ")");
 }

@@ -51,8 +51,8 @@ QuizRefAct::QuizRefAct(std::vector<Verse*> verses, QWidget* parent)
 
 void QuizRefAct::initVerse()
 {
-    connect(mVerse, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-            this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+    connect(mVerse, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+            this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     mVerseTextEdit->setText(mVerse->getText());
 }
 

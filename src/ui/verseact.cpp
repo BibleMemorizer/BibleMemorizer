@@ -50,8 +50,8 @@ VerseAct::VerseAct(Verse *verse, BiblePlugin *plugin,
     mQuizPage = new QuizAct(mVerse);
     mWidgetStack->addWidget(mQuizPage);
     //mVerse->addWatcher(this);
-    connect(mVerse, SIGNAL(verseChanged(const Verse&, Verse::ChangeType)),
-            this, SLOT(verseChanged(const Verse&, Verse::ChangeType)));
+    connect(mVerse, SIGNAL(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)),
+            this, SLOT(verseChanged(const bmemcore::Verse&, bmemcore::Verse::ChangeType)));
     connect((QObject*)coll, SIGNAL(categoryAdded(const QString&)), this,
             SLOT(addCategory(const QString&)));
     connect((QObject*)coll, SIGNAL(categoryRemoved(const QString&)), this,
